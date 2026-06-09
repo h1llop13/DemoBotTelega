@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка событий станков</title>
+</head>
+<body>
+
+<h2>Отправка событий станков</h2>
+
+<label>Machine ID</label>
+<input id="machineId" value="MACHINE-001">
+<br><br>
+
+<label>Предыдущий статус:</label>
+<select id="prevState">
+    <option>RUN</option>
+    <option>STOP</option>
+    <option>CONNECTION_LOST</option>
+</select>
+<br><br>
+
+<label>Новый статус:</label>
+<select id="newState">
+    <option>RUN</option>
+    <option>STOP</option>
+    <option>CONNECTION_LOST</option>
+</select>
+<br><br>
+
+<button onclick="sendEvent()">Отправить</button>
+
+<script>
+    function sendEvent() {
+
+        fetch('/api/machines/status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                machineId: document.getElementById('machineId').value,
+                stamp: new Date().toISOString(),
+                prevState: document.getElementById('prevState').value,
+                newState: document.getElementById('newState').value
+            })
+        })
+        .then(r => r.json())
+        .then(data => alert("Событие отправлено"));
+    }
+</script>
+</body>
+</html>
