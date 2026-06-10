@@ -4,7 +4,63 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="" />
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/DemoBotTelega(2).iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/.idea/amplicode-jpa.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/DemoBotTelegaApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/KafkaTopicConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/config/BotConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/config/KafkaConsumerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/config/KafkaProducerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/controller/MachineController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/entity/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/entity/Machine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/entity/MachineSubscription.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/AdminAddMachineHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/AdminDeleteMachineHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/CallbackHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/InfoCallbackHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/MenuHelpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/MenuListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/MenuSubscribeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/SubscribeCallbackHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/handler/UnsubscriberCallbackHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/machine/MachineStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/machine/MachineStatusChangeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/repo/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/repo/MachineRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/repo/MachineSubscriptionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/repo/SubscriberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/MachineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/java/com/example/demo/service/SubscriptionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/test/java/com/example/demo/DemoBotTelegaApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/test/java/com/example/demo/SubscriberServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/DemoBotTelega/src/test/java/com/example/demo/SubscriptionServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoBotTelega-master/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +74,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -95,5 +151,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="f" />
+    <option name="LAST_COMMIT_MESSAGE" value="f" />
   </component>
 </project>
