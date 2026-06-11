@@ -2,19 +2,20 @@ package com.example.demo.bot;
 
 import com.example.demo.handler.*;
 import com.example.demo.service.AdminService;
+import com.example.demo.service.MachineEventService;
 import com.example.demo.service.MachineService;
 import com.example.demo.service.SubscriberService;
 import com.example.demo.service.SubscriptionService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 
 import java.util.*;
 
@@ -31,20 +32,25 @@ public class MachineBot extends TelegramLongPollingBot {
     private final SubscriptionService subscriptionService;
     private final MachineService machineService;
     private final AdminService adminService;
+    private final MachineEventService machineEventService;
 
     private final Map<Long, String> adminState = new HashMap<>();
 
     private final Map<String, CallbackHandler> exactHandlers = new HashMap<>();
     private final Map<String, CallbackHandler> prefixHandlers = new HashMap<>();
 
+    private AdminEventFlowHandler adminEventFlowHandler;
+
     public MachineBot(SubscriberService subscriberService,
                       SubscriptionService subscriptionService,
                       MachineService machineService,
-                      AdminService adminService) {
+                      AdminService adminService,
+                      MachineEventService machineEventService) {
         this.subscriberService = subscriberService;
         this.subscriptionService = subscriptionService;
         this.machineService = machineService;
         this.adminService = adminService;
+        this.machineEventService = machineEventService;
     }
 
     // === Инициализация хендлеров ===
@@ -55,10 +61,14 @@ public class MachineBot extends TelegramLongPollingBot {
         exactHandlers.put("MENU_HELP", new MenuHelpHandler(this));
         exactHandlers.put("ADMIN_ADD_MACHINE", new AdminAddMachineHandler(this));
         exactHandlers.put("ADMIN_DELETE_MACHINE", new AdminDeleteMachineHandler(this));
+        exactHandlers.put("BACK_TO_MAIN", new BackHandler(this));
 
         prefixHandlers.put("SUB_", new SubscribeCallbackHandler(subscriberService, subscriptionService, this));
         prefixHandlers.put("UNSUB_", new UnsubscriberCallbackHandler(subscriberService, subscriptionService, this));
         prefixHandlers.put("INFO_", new InfoCallbackHandler(this));
+
+        adminEventFlowHandler = new AdminEventFlowHandler(this, machineService, machineEventService);
+        prefixHandlers.put("EVENT_", adminEventFlowHandler);
     }
 
     // === Входящие обновления ===
@@ -78,6 +88,10 @@ public class MachineBot extends TelegramLongPollingBot {
     private void handleCallback(Update update) {
         String data = update.getCallbackQuery().getData();
         Long chatId = update.getCallbackQuery().getMessage().getChatId();
+        Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
+
+        // Удаляем сообщение, на котором была нажата кнопка
+        deleteMessage(chatId, messageId);
 
         CallbackHandler handler = exactHandlers.get(data);
         if (handler != null) {
@@ -120,6 +134,11 @@ public class MachineBot extends TelegramLongPollingBot {
                 return;
             }
             sendAdminMenu(chatId);
+            return;
+        }
+
+        if (text.equals("/event")) {
+            adminEventFlowHandler.showMachineList(chatId);
             return;
         }
 
@@ -213,6 +232,19 @@ public class MachineBot extends TelegramLongPollingBot {
         }
     }
 
+    private void deleteMessage(Long chatId, Integer messageId) {
+        try {
+            execute(new DeleteMessage(chatId.toString(), messageId));
+        }
+        catch (TelegramApiException e) {
+            System.err.println("Не удалось удалить сообщение: " + messageId + ": " + e.getMessage());
+        }
+    }
+
+    public void sendMainMenu(Long chatId) {
+        sendMenu(chatId, "Главное меню");
+    }
+
     public void sendWithKeyboard(Long chatId, String text, InlineKeyboardMarkup markup) {
         try {
             SendMessage msg = new SendMessage(chatId.toString(), text);
@@ -241,6 +273,7 @@ public class MachineBot extends TelegramLongPollingBot {
         for (String m : machines) {
             rows.add(List.of(btn("📡 " + m, "SUB_" + m)));
         }
+        rows.add(List.of(btn("🔙 Назад", "BACK_TO_MAIN")));
         sendWithKeyboard(chatId, "Выберите станок:", rows);
     }
 
@@ -260,6 +293,7 @@ public class MachineBot extends TelegramLongPollingBot {
                     btn("❌", "UNSUB_" + m)
             ));
         }
+        rows.add(List.of(btn("🔙 Назад", "BACK_TO_MAIN")));
         sendWithKeyboard(chatId, "Ваши подписки:", rows);
     }
 
@@ -267,7 +301,8 @@ public class MachineBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         markup.setKeyboard(List.of(
                 List.of(btn("Добавить станок", "ADMIN_ADD_MACHINE")),
-                List.of(btn("Удалить станок", "ADMIN_DELETE_MACHINE"))
+                List.of(btn("Удалить станок", "ADMIN_DELETE_MACHINE")),
+                List.of(btn("📤 Отправить событие", "EVENT_OPEN"))
         ));
         sendWithKeyboard(chatId, "Админ-панель", markup);
     }

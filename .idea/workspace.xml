@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="aaa">
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd - привел код в порядок">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/DemoBotTelegaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/DemoBotTelegaApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/MachineSubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/MachineSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/repo/MachineSubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/repo/MachineSubscriptionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/MachineSubscription.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/MachineSubscription.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/repo/MachineSubscriptionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/repo/MachineSubscriptionRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/SubscriptionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/SubscriptionService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781155340542</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="upd - привел код в порядок">
+      <option name="closed" value="true" />
+      <created>1781208291829</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781208291829</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +139,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="f" />
     <MESSAGE value="aaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aaa" />
+    <MESSAGE value="upd - привел код в порядок" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd - привел код в порядок" />
   </component>
 </project>

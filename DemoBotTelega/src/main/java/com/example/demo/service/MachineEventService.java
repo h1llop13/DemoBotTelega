@@ -4,6 +4,7 @@ import com.example.demo.bot.MachineBot;
 import com.example.demo.machine.MachineStatusChangeEvent;
 import com.example.demo.repo.SubscriberRepository;
 import com.example.demo.repo.MachineSubscriptionRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -23,7 +24,7 @@ public class MachineEventService {
     public MachineEventService(
             MachineSubscriptionRepository subscriptionRepository,
             SubscriberRepository subscriberRepository,
-            MachineBot machineBot,
+            @Lazy MachineBot machineBot,
             EmailNotificationService emailNotificationService) {
 
         this.subscriptionRepository = subscriptionRepository;
