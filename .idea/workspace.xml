@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="aaa">
-      <change beforePath="$PROJECT_DIR$/.idea/DemoBotTelega(2).iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DemoBotTelegaaa.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/KafkaTopicConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/config/KafkaTopicConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/controller/MachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/controller/MachineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/MachineSubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/MachineSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/KafkaTopicConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/controller/MachineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/controller/MachineController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/MachineSubscription.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/MachineSubscription.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/Subscriber.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/entity/Subscriber.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventConsumer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventProducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventProducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/SubscriberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/SubscriberService.class" afterDir="false" />
-    </list>
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="aaa" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781070530751</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="aaa">
+      <option name="closed" value="true" />
+      <created>1781155309110</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781155309110</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
