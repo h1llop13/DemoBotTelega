@@ -18,18 +18,18 @@ public class MachineEventService {
     private final MachineSubscriptionRepository subscriptionRepository;
     private final SubscriberRepository subscriberRepository;
     private final MachineBot machineBot;
-    private final EmailNotificationService emailNotificationService; // ← новое
+    private final EmailNotificationService emailNotificationService;
 
     public MachineEventService(
             MachineSubscriptionRepository subscriptionRepository,
             SubscriberRepository subscriberRepository,
             MachineBot machineBot,
-            EmailNotificationService emailNotificationService) { // ← новое
+            EmailNotificationService emailNotificationService) {
 
         this.subscriptionRepository = subscriptionRepository;
         this.subscriberRepository = subscriberRepository;
         this.machineBot = machineBot;
-        this.emailNotificationService = emailNotificationService; // ← новое
+        this.emailNotificationService = emailNotificationService;
     }
 
     public void process(MachineStatusChangeEvent event) {
@@ -38,17 +38,12 @@ public class MachineEventService {
         InlineKeyboardMarkup keyboard = buildUnsubscribeButton(event.machineId());
 
         for (var subscription : subscriptions) {
-            var subscriber = subscriberRepository.findById(subscription.getSubscriberId());
-            subscriber.ifPresent(s -> {
-                // Telegram уведомление
-                machineBot.sendNotificationWithKeyboard(s.getChatId(), text, keyboard);
-                // Email уведомление
-                emailNotificationService.sendNotification(s, event); // ← новое
+            subscriberRepository.findById(subscription.getSubscriberId()).ifPresent(s -> {
+                machineBot.sendWithKeyboard(s.getChatId(), text, keyboard);
+                emailNotificationService.sendNotification(s, event);
             });
         }
     }
-
-    // buildUnsubscribeButton и buildMessage — не трогаем, остаются как есть
 
     private InlineKeyboardMarkup buildUnsubscribeButton(String machineId) {
         InlineKeyboardButton button = new InlineKeyboardButton();

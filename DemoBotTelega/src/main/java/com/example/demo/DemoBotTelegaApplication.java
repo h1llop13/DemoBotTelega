@@ -11,5 +11,4 @@ public class DemoBotTelegaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoBotTelegaApplication.class, args);
 	}
-
 }

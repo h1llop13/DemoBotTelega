@@ -26,7 +26,7 @@ public class SubscriberService {
         return repo.findByChatId(chatId).orElse(null);
     }
 
-    public boolean exists(Long  chatId) {
+    public boolean exists(Long chatId) {
         return repo.findByChatId(chatId).isPresent();
     }
 
@@ -37,9 +37,3 @@ public class SubscriberService {
         });
     }
 }
-
-
-
-
-
-
