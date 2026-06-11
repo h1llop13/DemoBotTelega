@@ -10,7 +10,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-
 import java.util.List;
 
 @Service
@@ -19,15 +18,18 @@ public class MachineEventService {
     private final MachineSubscriptionRepository subscriptionRepository;
     private final SubscriberRepository subscriberRepository;
     private final MachineBot machineBot;
+    private final EmailNotificationService emailNotificationService; // ← новое
 
     public MachineEventService(
             MachineSubscriptionRepository subscriptionRepository,
             SubscriberRepository subscriberRepository,
-            MachineBot machineBot) {
+            MachineBot machineBot,
+            EmailNotificationService emailNotificationService) { // ← новое
 
         this.subscriptionRepository = subscriptionRepository;
         this.subscriberRepository = subscriberRepository;
         this.machineBot = machineBot;
+        this.emailNotificationService = emailNotificationService; // ← новое
     }
 
     public void process(MachineStatusChangeEvent event) {
@@ -38,14 +40,15 @@ public class MachineEventService {
         for (var subscription : subscriptions) {
             var subscriber = subscriberRepository.findById(subscription.getSubscriberId());
             subscriber.ifPresent(s -> {
-                machineBot.sendNotificationWithKeyboard(
-                        subscriber.get().getChatId(),
-                        text,
-                        keyboard
-                );
+                // Telegram уведомление
+                machineBot.sendNotificationWithKeyboard(s.getChatId(), text, keyboard);
+                // Email уведомление
+                emailNotificationService.sendNotification(s, event); // ← новое
             });
         }
     }
+
+    // buildUnsubscribeButton и buildMessage — не трогаем, остаются как есть
 
     private InlineKeyboardMarkup buildUnsubscribeButton(String machineId) {
         InlineKeyboardButton button = new InlineKeyboardButton();
@@ -54,17 +57,13 @@ public class MachineEventService {
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         markup.setKeyboard(List.of(List.of(button)));
-        return  markup;
+        return markup;
     }
 
-    private String buildMessage(
-            MachineStatusChangeEvent event) {
-
-        String time =
-                DateTimeFormatter.ofPattern(
-                                "dd.MM.yyyy HH:mm:ss")
-                        .withZone(ZoneOffset.UTC)
-                        .format(event.stamp());
+    private String buildMessage(MachineStatusChangeEvent event) {
+        String time = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
+                .withZone(ZoneOffset.UTC)
+                .format(event.stamp());
 
         return """
                 ⚙ Станок: %s
@@ -76,11 +75,6 @@ public class MachineEventService {
                 Время:
                 %s UTC
                 """
-                .formatted(
-                        event.machineId(),
-                        event.prevState(),
-                        event.newState(),
-                        time
-                );
+                .formatted(event.machineId(), event.prevState(), event.newState(), time);
     }
 }

@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Subscriber;
 import com.example.demo.repo.SubscriberRepository;
-import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,6 +28,13 @@ public class SubscriberService {
 
     public boolean exists(Long  chatId) {
         return repo.findByChatId(chatId).isPresent();
+    }
+
+    public void setEmail(Long chatId, String email) {
+        repo.findByChatId(chatId).ifPresent(subscriber -> {
+            subscriber.setEmail(email);
+            repo.save(subscriber);
+        });
     }
 }
 

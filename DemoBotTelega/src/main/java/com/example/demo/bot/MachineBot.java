@@ -47,7 +47,7 @@ public class MachineBot extends TelegramLongPollingBot {
         this.adminService = adminService;
     }
 
-    // ===================== MAIN =====================
+    // === Main sector ===
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasCallbackQuery()) {
@@ -73,7 +73,7 @@ public class MachineBot extends TelegramLongPollingBot {
         prefixHandlers.put("INFO_", new InfoCallbackHandler(this));
     }
 
-    // ===================== CALLBACK =====================
+    // === Callback ===
     private void handleCallback(Update update) {
         String data = update.getCallbackQuery().getData();
         Long chatId = update.getCallbackQuery().getMessage().getChatId();
@@ -94,7 +94,7 @@ public class MachineBot extends TelegramLongPollingBot {
         send(chatId, "Неизвестная команда");
     }
 
-    // ===================== MESSAGE =====================
+    // === Message ===
     private void handleMessage(Update update) {
         String text = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
@@ -122,7 +122,7 @@ public class MachineBot extends TelegramLongPollingBot {
             return;
         }
 
-        // ===== ADMIN STATE =====
+        // === Admin state ===
         String state = adminState.get(chatId);
 
         if (state != null && isAdmin(chatId)) {
@@ -145,7 +145,7 @@ public class MachineBot extends TelegramLongPollingBot {
             }
         }
 
-        // ===== SUBSCRIBE =====
+        // === Subscribe ===
         if (text.startsWith("/subscribe")) {
             String[] parts = text.split(" ");
             if (parts.length < 2) {
@@ -158,7 +158,7 @@ public class MachineBot extends TelegramLongPollingBot {
             return;
         }
 
-        // ===== UNSUBSCRIBE =====
+        // === Unsubscribe ===
         if (text.startsWith("/unsubscribe")) {
             String[] parts = text.split(" ");
             if (parts.length < 2) {
@@ -171,7 +171,7 @@ public class MachineBot extends TelegramLongPollingBot {
             return;
         }
 
-        // ===== LIST =====
+        // === List ===
         if (text.equals("/list")) {
             var sub = subscriberService.getByChatId(chatId);
             var list = subscriptionService.listMachines(sub.getId());
@@ -187,9 +187,22 @@ public class MachineBot extends TelegramLongPollingBot {
             }
             send(chatId, sb.toString());
         }
+
+        // === Set email ===
+        if (text.startsWith("/setemail")) {
+            String[] parts = text.split(" ");
+            if (parts.length < 2) {
+                send(chatId, "Использование:\n/setemail your@email.com");
+                return;
+            }
+            String email = parts[1];
+            subscriberService.setEmail(chatId, email);
+            send(chatId, "Email сохранен: " + email + "\nТеперь уведомления о станках будут приходить на почту");
+            return;
+        }
     }
 
-    // ===================== PUBLIC METHODS FOR HANDLERS =====================
+    // Methods for Handlers ===
     public Map<Long, String> getAdminState() {
         return adminState;
     }
@@ -288,7 +301,7 @@ public class MachineBot extends TelegramLongPollingBot {
         return b;
     }
 
-    // ===================== BOT METHODS =====================
+    // === Methods for Bot ===
     @Override
     public String getBotUsername() {
         return username;

@@ -9,13 +9,9 @@ public class MachineSubscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long subscriberId;
-
     private String machineId;
-
     private LocalDateTime createdAt = LocalDateTime.now();
-
     public MachineSubscription() {}
 
     public MachineSubscription(Long id, Long subscriberId, String machineId, LocalDateTime createdAt) {

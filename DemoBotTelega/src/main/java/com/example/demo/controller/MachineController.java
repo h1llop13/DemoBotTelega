@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.machine.MachineStatusChangeEvent;
-import com.example.demo.service.MachineEventProducer;
 import com.example.demo.service.MachineEventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +11,15 @@ import java.util.Map;
 @RequestMapping("/api/machines")
 public class MachineController {
 
-    private final MachineEventProducer machineEventProducer; // <-- было MachineEventService
+    private final MachineEventService machineEventService;
 
-    public MachineController(MachineEventProducer machineEventProducer) {
-        this.machineEventProducer = machineEventProducer;
+    public MachineController(MachineEventService machineEventService) {
+        this.machineEventService = machineEventService;
     }
 
-    @PostMapping("status")
-    public ResponseEntity<?> statusChanged(@RequestBody MachineStatusChangeEvent event) {
-        machineEventProducer.publish(event); // кладём в Kafka и сразу отвечаем
-        return ResponseEntity.ok(Map.of("status", "accepted"));
+    @PostMapping("/status")
+    public ResponseEntity<String> updateStatus(@RequestBody MachineStatusChangeEvent event) {
+        machineEventService.process(event);
+        return ResponseEntity.ok("OK");
     }
 }

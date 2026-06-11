@@ -9,13 +9,10 @@ public class Subscriber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long chatId;
-
     private String username;
-
+    private String email;
     private LocalDateTime createdAt = LocalDateTime.now();
-
     public Subscriber() {}
 
     public Subscriber(Long id, Long chatId, String username, LocalDateTime createdAt) {
@@ -36,4 +33,8 @@ public class Subscriber {
     public String getUsername() {
         return username;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 }
