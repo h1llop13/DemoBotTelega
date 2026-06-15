@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriberServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriberServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriptionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriptionServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriberServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriberServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriptionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriptionServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/repomix-output.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,27 +53,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.AdminServiceTest.executor": "Run",
-    "JUnit.MachineServiceTest.executor": "Run",
-    "JUnit.SubscriberServiceTest.executor": "Run",
-    "JUnit.SubscriptionServiceTest.executor": "Run",
-    "Maven.demo [install].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot Application.DemoBotTelegaApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/DemoBotTelegaaa",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AdminServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MachineServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubscriberServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubscriptionServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo [install].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot Application.DemoBotTelegaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DemoBotTelegaaa&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot Application.DemoBotTelegaApplication">
     <configuration name="DemoBotTelegaApplication" type="AmplicodeSpringBootApplication" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demo.DemoBotTelegaApplication" />
@@ -206,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781216291102</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang">
+      <option name="closed" value="true" />
+      <created>1781504166110</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1781504166110</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +226,7 @@
     <MESSAGE value="aaa" />
     <MESSAGE value="upd - привел код в порядок" />
     <MESSAGE value="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)" />
-    <option name="LAST_COMMIT_MESSAGE" value="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)" />
+    <MESSAGE value="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang" />
   </component>
 </project>
