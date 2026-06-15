@@ -1,0 +1,3063 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+HELP.md
+mvnw
+mvnw.cmd
+pom.xml
+src/main/java/com/example/demo/bot/MachineBot.java
+src/main/java/com/example/demo/config/BotConfig.java
+src/main/java/com/example/demo/config/KafkaConsumerConfig.java
+src/main/java/com/example/demo/config/KafkaProducerConfig.java
+src/main/java/com/example/demo/config/KafkaTopicConfig.java
+src/main/java/com/example/demo/config/MessageSourceConfig.java
+src/main/java/com/example/demo/controller/AdminController.java
+src/main/java/com/example/demo/controller/MachineController.java
+src/main/java/com/example/demo/DemoBotTelegaApplication.java
+src/main/java/com/example/demo/entity/Admin.java
+src/main/java/com/example/demo/entity/Machine.java
+src/main/java/com/example/demo/entity/MachineSubscription.java
+src/main/java/com/example/demo/entity/Subscriber.java
+src/main/java/com/example/demo/handler/AdminAddMachineHandler.java
+src/main/java/com/example/demo/handler/AdminDeleteMachineHandler.java
+src/main/java/com/example/demo/handler/AdminEventFlowHandler.java
+src/main/java/com/example/demo/handler/BackHandler.java
+src/main/java/com/example/demo/handler/CallbackHandler.java
+src/main/java/com/example/demo/handler/InfoCallbackHandler.java
+src/main/java/com/example/demo/handler/LanguageCallbackHandler.java
+src/main/java/com/example/demo/handler/MenuHelpHandler.java
+src/main/java/com/example/demo/handler/MenuListHandler.java
+src/main/java/com/example/demo/handler/MenuSubscribeHandler.java
+src/main/java/com/example/demo/handler/SubscribeCallbackHandler.java
+src/main/java/com/example/demo/handler/UnsubscriberCallbackHandler.java
+src/main/java/com/example/demo/machine/MachineStatus.java
+src/main/java/com/example/demo/machine/MachineStatusChangeEvent.java
+src/main/java/com/example/demo/repo/AdminRepository.java
+src/main/java/com/example/demo/repo/MachineRepository.java
+src/main/java/com/example/demo/repo/MachineSubscriptionRepository.java
+src/main/java/com/example/demo/repo/SubscriberRepository.java
+src/main/java/com/example/demo/service/AdminService.java
+src/main/java/com/example/demo/service/EmailNotificationService.java
+src/main/java/com/example/demo/service/LocaleService.java
+src/main/java/com/example/demo/service/MachineEventConsumer.java
+src/main/java/com/example/demo/service/MachineEventProducer.java
+src/main/java/com/example/demo/service/MachineEventService.java
+src/main/java/com/example/demo/service/MachineService.java
+src/main/java/com/example/demo/service/SubscriberService.java
+src/main/java/com/example/demo/service/SubscriptionService.java
+src/main/resources/application.properties
+src/main/resources/messages_nl.properties
+src/main/resources/messages_ru.properties
+src/main/resources/messages.properties
+src/main/resources/static/index.html
+src/test/java/com/example/demo/AdminServiceTest.java
+src/test/java/com/example/demo/DemoBotTelegaApplicationTests.java
+src/test/java/com/example/demo/MachineEventServiceTest.java
+src/test/java/com/example/demo/MachineServiceTest.java
+src/test/java/com/example/demo/SubscriberServiceTest.java
+src/test/java/com/example/demo/SubscriptionServiceTest.java
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="HELP.md">
+# Getting Started
+
+### Reference Documentation
+For further reference, please consider the following sections:
+
+* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/4.0.6/maven-plugin)
+* [Create an OCI image](https://docs.spring.io/spring-boot/4.0.6/maven-plugin/build-image.html)
+* [Spring Web](https://docs.spring.io/spring-boot/4.0.6/reference/web/servlet.html)
+
+### Guides
+The following guides illustrate how to use some features concretely:
+
+* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+
+### Maven Parent overrides
+
+Due to Maven's design, elements are inherited from the parent POM to the project POM.
+While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
+To prevent this, the project POM contains empty overrides for these elements.
+If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+</file>
+
+<file path="mvnw">
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.4
+#
+# Optional ENV vars
+# -----------------
+#   JAVA_HOME - location of a JDK home dir, required when download maven via java source
+#   MVNW_REPOURL - repo url base for downloading maven distribution
+#   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+#   MVNW_VERBOSE - true: enable verbose log; debug: trace the mvnw script; others: silence the output
+# ----------------------------------------------------------------------------
+
+set -euf
+[ "${MVNW_VERBOSE-}" != debug ] || set -x
+
+# OS specific support.
+native_path() { printf %s\\n "$1"; }
+case "$(uname)" in
+CYGWIN* | MINGW*)
+  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
+  native_path() { cygpath --path --windows "$1"; }
+  ;;
+esac
+
+# set JAVACMD and JAVACCMD
+set_java_home() {
+  # For Cygwin and MinGW, ensure paths are in Unix format before anything is touched
+  if [ -n "${JAVA_HOME-}" ]; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+      # IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="$JAVA_HOME/jre/sh/java"
+      JAVACCMD="$JAVA_HOME/jre/sh/javac"
+    else
+      JAVACMD="$JAVA_HOME/bin/java"
+      JAVACCMD="$JAVA_HOME/bin/javac"
+
+      if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
+        echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
+        echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
+        return 1
+      fi
+    fi
+  else
+    JAVACMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v java
+    )" || :
+    JAVACCMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v javac
+    )" || :
+
+    if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
+      echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
+      return 1
+    fi
+  fi
+}
+
+# hash string like Java String::hashCode
+hash_string() {
+  str="${1:-}" h=0
+  while [ -n "$str" ]; do
+    char="${str%"${str#?}"}"
+    h=$(((h * 31 + $(LC_CTYPE=C printf %d "'$char")) % 4294967296))
+    str="${str#?}"
+  done
+  printf %x\\n $h
+}
+
+verbose() { :; }
+[ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
+
+die() {
+  printf %s\\n "$1" >&2
+  exit 1
+}
+
+trim() {
+  # MWRAPPER-139:
+  #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
+  #   Needed for removing poorly interpreted newline sequences when running in more
+  #   exotic environments such as mingw bash on Windows.
+  printf "%s" "${1}" | tr -d '[:space:]'
+}
+
+scriptDir="$(dirname "$0")"
+scriptName="$(basename "$0")"
+
+# parse distributionUrl and optional distributionSha256Sum, requires .mvn/wrapper/maven-wrapper.properties
+while IFS="=" read -r key value; do
+  case "${key-}" in
+  distributionUrl) distributionUrl=$(trim "${value-}") ;;
+  distributionSha256Sum) distributionSha256Sum=$(trim "${value-}") ;;
+  esac
+done <"$scriptDir/.mvn/wrapper/maven-wrapper.properties"
+[ -n "${distributionUrl-}" ] || die "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+
+case "${distributionUrl##*/}" in
+maven-mvnd-*bin.*)
+  MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
+  case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
+  *)
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
+    ;;
+  esac
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
+  ;;
+maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
+*) MVN_CMD="mvn${scriptName#mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
+esac
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+[ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
+distributionUrlName="${distributionUrl##*/}"
+distributionUrlNameMain="${distributionUrlName%.*}"
+distributionUrlNameMain="${distributionUrlNameMain%-bin}"
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-${HOME}/.m2}"
+MAVEN_HOME="${MAVEN_USER_HOME}/wrapper/dists/${distributionUrlNameMain-}/$(hash_string "$distributionUrl")"
+
+exec_maven() {
+  unset MVNW_VERBOSE MVNW_USERNAME MVNW_PASSWORD MVNW_REPOURL || :
+  exec "$MAVEN_HOME/bin/$MVN_CMD" "$@" || die "cannot exec $MAVEN_HOME/bin/$MVN_CMD"
+}
+
+if [ -d "$MAVEN_HOME" ]; then
+  verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  exec_maven "$@"
+fi
+
+case "${distributionUrl-}" in
+*?-bin.zip | *?maven-mvnd-?*-?*.zip) ;;
+*) die "distributionUrl is not valid, must match *-bin.zip or maven-mvnd-*.zip, but found '${distributionUrl-}'" ;;
+esac
+
+# prepare tmp dir
+if TMP_DOWNLOAD_DIR="$(mktemp -d)" && [ -d "$TMP_DOWNLOAD_DIR" ]; then
+  clean() { rm -rf -- "$TMP_DOWNLOAD_DIR"; }
+  trap clean HUP INT TERM EXIT
+else
+  die "cannot create temp dir"
+fi
+
+mkdir -p -- "${MAVEN_HOME%/*}"
+
+# Download and Install Apache Maven
+verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+verbose "Downloading from: $distributionUrl"
+verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+# select .zip or .tar.gz
+if ! command -v unzip >/dev/null; then
+  distributionUrl="${distributionUrl%.zip}.tar.gz"
+  distributionUrlName="${distributionUrl##*/}"
+fi
+
+# verbose opt
+__MVNW_QUIET_WGET=--quiet __MVNW_QUIET_CURL=--silent __MVNW_QUIET_UNZIP=-q __MVNW_QUIET_TAR=''
+[ "${MVNW_VERBOSE-}" != true ] || __MVNW_QUIET_WGET='' __MVNW_QUIET_CURL='' __MVNW_QUIET_UNZIP='' __MVNW_QUIET_TAR=v
+
+# normalize http auth
+case "${MVNW_PASSWORD:+has-password}" in
+'') MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+has-password) [ -n "${MVNW_USERNAME-}" ] || MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+esac
+
+if [ -z "${MVNW_USERNAME-}" ] && command -v wget >/dev/null; then
+  verbose "Found wget ... using wget"
+  wget ${__MVNW_QUIET_WGET:+"$__MVNW_QUIET_WGET"} "$distributionUrl" -O "$TMP_DOWNLOAD_DIR/$distributionUrlName" || die "wget: Failed to fetch $distributionUrl"
+elif [ -z "${MVNW_USERNAME-}" ] && command -v curl >/dev/null; then
+  verbose "Found curl ... using curl"
+  curl ${__MVNW_QUIET_CURL:+"$__MVNW_QUIET_CURL"} -f -L -o "$TMP_DOWNLOAD_DIR/$distributionUrlName" "$distributionUrl" || die "curl: Failed to fetch $distributionUrl"
+elif set_java_home; then
+  verbose "Falling back to use Java to download"
+  javaSource="$TMP_DOWNLOAD_DIR/Downloader.java"
+  targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
+  cat >"$javaSource" <<-END
+	public class Downloader extends java.net.Authenticator
+	{
+	  protected java.net.PasswordAuthentication getPasswordAuthentication()
+	  {
+	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
+	  }
+	  public static void main( String[] args ) throws Exception
+	  {
+	    setDefault( new Downloader() );
+	    java.nio.file.Files.copy( java.net.URI.create( args[0] ).toURL().openStream(), java.nio.file.Paths.get( args[1] ).toAbsolutePath().normalize() );
+	  }
+	}
+	END
+  # For Cygwin/MinGW, switch paths to Windows format before running javac and java
+  verbose " - Compiling Downloader.java ..."
+  "$(native_path "$JAVACCMD")" "$(native_path "$javaSource")" || die "Failed to compile Downloader.java"
+  verbose " - Running Downloader.java ..."
+  "$(native_path "$JAVACMD")" -cp "$(native_path "$TMP_DOWNLOAD_DIR")" Downloader "$distributionUrl" "$(native_path "$targetZip")"
+fi
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+if [ -n "${distributionSha256Sum-}" ]; then
+  distributionSha256Result=false
+  if [ "$MVN_CMD" = mvnd.sh ]; then
+    echo "Checksum validation is not supported for maven-mvnd." >&2
+    echo "Please disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  elif command -v sha256sum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | sha256sum -c - >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  elif command -v shasum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | shasum -a 256 -c >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  else
+    echo "Checksum validation was requested but neither 'sha256sum' or 'shasum' are available." >&2
+    echo "Please install either command, or disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  fi
+  if [ $distributionSha256Result = false ]; then
+    echo "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised." >&2
+    echo "If you updated your Maven version, you need to update the specified distributionSha256Sum property." >&2
+    exit 1
+  fi
+fi
+
+# unzip and move
+if command -v unzip >/dev/null; then
+  unzip ${__MVNW_QUIET_UNZIP:+"$__MVNW_QUIET_UNZIP"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -d "$TMP_DOWNLOAD_DIR" || die "failed to unzip"
+else
+  tar xzf${__MVNW_QUIET_TAR:+"$__MVNW_QUIET_TAR"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -C "$TMP_DOWNLOAD_DIR" || die "failed to untar"
+fi
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+actualDistributionDir=""
+
+# First try the expected directory name (for regular distributions)
+if [ -d "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain" ]; then
+  if [ -f "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain/bin/$MVN_CMD" ]; then
+    actualDistributionDir="$distributionUrlNameMain"
+  fi
+fi
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if [ -z "$actualDistributionDir" ]; then
+  # enable globbing to iterate over items
+  set +f
+  for dir in "$TMP_DOWNLOAD_DIR"/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/bin/$MVN_CMD" ]; then
+        actualDistributionDir="$(basename "$dir")"
+        break
+      fi
+    fi
+  done
+  set -f
+fi
+
+if [ -z "$actualDistributionDir" ]; then
+  verbose "Contents of $TMP_DOWNLOAD_DIR:"
+  verbose "$(ls -la "$TMP_DOWNLOAD_DIR")"
+  die "Could not find Maven distribution directory in extracted archive"
+fi
+
+verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+printf %s\\n "$distributionUrl" >"$TMP_DOWNLOAD_DIR/$actualDistributionDir/mvnw.url"
+mv -- "$TMP_DOWNLOAD_DIR/$actualDistributionDir" "$MAVEN_HOME" || [ -d "$MAVEN_HOME" ] || die "fail to move MAVEN_HOME"
+
+clean || :
+exec_maven "$@"
+</file>
+
+<file path="mvnw.cmd">
+<# : batch portion
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
+@REM ----------------------------------------------------------------------------
+@REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM
+@REM Optional ENV vars
+@REM   MVNW_REPOURL - repo url base for downloading maven distribution
+@REM   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+@REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
+@REM ----------------------------------------------------------------------------
+
+@IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
+@SET __MVNW_CMD__=
+@SET __MVNW_ERROR__=
+@SET __MVNW_PSMODULEP_SAVE=%PSModulePath%
+@SET PSModulePath=
+@FOR /F "usebackq tokens=1* delims==" %%A IN (`powershell -noprofile "& {$scriptDir='%~dp0'; $script='%__MVNW_ARG0_NAME__%'; icm -ScriptBlock ([Scriptblock]::Create((Get-Content -Raw '%~f0'))) -NoNewScope}"`) DO @(
+  IF "%%A"=="MVN_CMD" (set __MVNW_CMD__=%%B) ELSE IF "%%B"=="" (echo %%A) ELSE (echo %%A=%%B)
+)
+@SET PSModulePath=%__MVNW_PSMODULEP_SAVE%
+@SET __MVNW_PSMODULEP_SAVE=
+@SET __MVNW_ARG0_NAME__=
+@SET MVNW_USERNAME=
+@SET MVNW_PASSWORD=
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@echo Cannot start maven from wrapper >&2 && exit /b 1
+@GOTO :EOF
+: end batch / begin powershell #>
+
+$ErrorActionPreference = "Stop"
+if ($env:MVNW_VERBOSE -eq "true") {
+  $VerbosePreference = "Continue"
+}
+
+# calculate distributionUrl, requires .mvn/wrapper/maven-wrapper.properties
+$distributionUrl = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionUrl
+if (!$distributionUrl) {
+  Write-Error "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+}
+
+switch -wildcard -casesensitive ( $($distributionUrl -replace '^.*/','') ) {
+  "maven-mvnd-*" {
+    $USE_MVND = $true
+    $distributionUrl = $distributionUrl -replace '-bin\.[^.]*$',"-windows-amd64.zip"
+    $MVN_CMD = "mvnd.cmd"
+    break
+  }
+  default {
+    $USE_MVND = $false
+    $MVN_CMD = $script -replace '^mvnw','mvn'
+    break
+  }
+}
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+if ($env:MVNW_REPOURL) {
+  $MVNW_REPO_PATTERN = if ($USE_MVND -eq $False) { "/org/apache/maven/" } else { "/maven/mvnd/" }
+  $distributionUrl = "$env:MVNW_REPOURL$MVNW_REPO_PATTERN$($distributionUrl -replace "^.*$MVNW_REPO_PATTERN",'')"
+}
+$distributionUrlName = $distributionUrl -replace '^.*/',''
+$distributionUrlNameMain = $distributionUrlName -replace '\.[^.]*$','' -replace '-bin$',''
+
+$MAVEN_M2_PATH = "$HOME/.m2"
+if ($env:MAVEN_USER_HOME) {
+  $MAVEN_M2_PATH = "$env:MAVEN_USER_HOME"
+}
+
+if (-not (Test-Path -Path $MAVEN_M2_PATH)) {
+    New-Item -Path $MAVEN_M2_PATH -ItemType Directory | Out-Null
+}
+
+$MAVEN_WRAPPER_DISTS = $null
+if ((Get-Item $MAVEN_M2_PATH).Target[0] -eq $null) {
+  $MAVEN_WRAPPER_DISTS = "$MAVEN_M2_PATH/wrapper/dists"
+} else {
+  $MAVEN_WRAPPER_DISTS = (Get-Item $MAVEN_M2_PATH).Target[0] + "/wrapper/dists"
+}
+
+$MAVEN_HOME_PARENT = "$MAVEN_WRAPPER_DISTS/$distributionUrlNameMain"
+$MAVEN_HOME_NAME = ([System.Security.Cryptography.SHA256]::Create().ComputeHash([byte[]][char[]]$distributionUrl) | ForEach-Object {$_.ToString("x2")}) -join ''
+$MAVEN_HOME = "$MAVEN_HOME_PARENT/$MAVEN_HOME_NAME"
+
+if (Test-Path -Path "$MAVEN_HOME" -PathType Container) {
+  Write-Verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+  exit $?
+}
+
+if (! $distributionUrlNameMain -or ($distributionUrlName -eq $distributionUrlNameMain)) {
+  Write-Error "distributionUrl is not valid, must end with *-bin.zip, but found $distributionUrl"
+}
+
+# prepare tmp dir
+$TMP_DOWNLOAD_DIR_HOLDER = New-TemporaryFile
+$TMP_DOWNLOAD_DIR = New-Item -Itemtype Directory -Path "$TMP_DOWNLOAD_DIR_HOLDER.dir"
+$TMP_DOWNLOAD_DIR_HOLDER.Delete() | Out-Null
+trap {
+  if ($TMP_DOWNLOAD_DIR.Exists) {
+    try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+    catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+  }
+}
+
+New-Item -Itemtype Directory -Path "$MAVEN_HOME_PARENT" -Force | Out-Null
+
+# Download and Install Apache Maven
+Write-Verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+Write-Verbose "Downloading from: $distributionUrl"
+Write-Verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+$webclient = New-Object System.Net.WebClient
+if ($env:MVNW_USERNAME -and $env:MVNW_PASSWORD) {
+  $webclient.Credentials = New-Object System.Net.NetworkCredential($env:MVNW_USERNAME, $env:MVNW_PASSWORD)
+}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$webclient.DownloadFile($distributionUrl, "$TMP_DOWNLOAD_DIR/$distributionUrlName") | Out-Null
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+$distributionSha256Sum = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionSha256Sum
+if ($distributionSha256Sum) {
+  if ($USE_MVND) {
+    Write-Error "Checksum validation is not supported for maven-mvnd. `nPlease disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties."
+  }
+  Import-Module $PSHOME\Modules\Microsoft.PowerShell.Utility -Function Get-FileHash
+  if ((Get-FileHash "$TMP_DOWNLOAD_DIR/$distributionUrlName" -Algorithm SHA256).Hash.ToLower() -ne $distributionSha256Sum) {
+    Write-Error "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised. If you updated your Maven version, you need to update the specified distributionSha256Sum property."
+  }
+}
+
+# unzip and move
+Expand-Archive "$TMP_DOWNLOAD_DIR/$distributionUrlName" -DestinationPath "$TMP_DOWNLOAD_DIR" | Out-Null
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+$actualDistributionDir = ""
+
+# First try the expected directory name (for regular distributions)
+$expectedPath = Join-Path "$TMP_DOWNLOAD_DIR" "$distributionUrlNameMain"
+$expectedMvnPath = Join-Path "$expectedPath" "bin/$MVN_CMD"
+if ((Test-Path -Path $expectedPath -PathType Container) -and (Test-Path -Path $expectedMvnPath -PathType Leaf)) {
+  $actualDistributionDir = $distributionUrlNameMain
+}
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if (!$actualDistributionDir) {
+  Get-ChildItem -Path "$TMP_DOWNLOAD_DIR" -Directory | ForEach-Object {
+    $testPath = Join-Path $_.FullName "bin/$MVN_CMD"
+    if (Test-Path -Path $testPath -PathType Leaf) {
+      $actualDistributionDir = $_.Name
+    }
+  }
+}
+
+if (!$actualDistributionDir) {
+  Write-Error "Could not find Maven distribution directory in extracted archive"
+}
+
+Write-Verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+Rename-Item -Path "$TMP_DOWNLOAD_DIR/$actualDistributionDir" -NewName $MAVEN_HOME_NAME | Out-Null
+try {
+  Move-Item -Path "$TMP_DOWNLOAD_DIR/$MAVEN_HOME_NAME" -Destination $MAVEN_HOME_PARENT | Out-Null
+} catch {
+  if (! (Test-Path -Path "$MAVEN_HOME" -PathType Container)) {
+    Write-Error "fail to move MAVEN_HOME"
+  }
+} finally {
+  try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+  catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+}
+
+Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+</file>
+
+<file path="pom.xml">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.6</version>
+		<relativePath/>
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>DemoBotTelega</name>
+	<properties>
+		<java.version>26</java.version>
+	</properties>
+	<dependencies>
+		<!--  Spring Web  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--  Spring Data JPA  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!--  PostgreSQL  -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+		<!--  Telegram Bots  -->
+		<dependency>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambots</artifactId>
+			<version>6.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambots-spring-boot-starter</artifactId>
+			<version>6.8.0</version>
+		</dependency>
+		<!--  Lombok  -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--  Kafka  -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!--  Mail  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!--  Test  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+</file>
+
+<file path="src/main/java/com/example/demo/bot/MachineBot.java">
+package com.example.demo.bot;
+
+import com.example.demo.handler.*;
+import com.example.demo.service.*;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+
+import java.util.*;
+
+@Component
+public class MachineBot extends TelegramLongPollingBot {
+
+    @Value("${telegram.bot.username}")
+    private String username;
+
+    @Value("${telegram.bot.token}")
+    private String token;
+
+    private final SubscriberService subscriberService;
+    private final SubscriptionService subscriptionService;
+    private final MachineService machineService;
+    private final AdminService adminService;
+    private final MachineEventService machineEventService;
+    private final LocaleService localeService;
+
+    private final Map<Long, String> adminState = new HashMap<>();
+
+    private final Map<String, CallbackHandler> exactHandlers = new HashMap<>();
+    private final Map<String, CallbackHandler> prefixHandlers = new HashMap<>();
+
+    private AdminEventFlowHandler adminEventFlowHandler;
+
+    public MachineBot(SubscriberService subscriberService,
+                      SubscriptionService subscriptionService,
+                      MachineService machineService,
+                      AdminService adminService,
+                      MachineEventService machineEventService,
+                      LocaleService localeService) {
+        this.subscriberService = subscriberService;
+        this.subscriptionService = subscriptionService;
+        this.machineService = machineService;
+        this.adminService = adminService;
+        this.machineEventService = machineEventService;
+        this.localeService = localeService;
+    }
+
+    // === Инициализация хендлеров ===
+    @PostConstruct
+    private void initHandlers() {
+        exactHandlers.put("MENU_SUBSCRIBE", new MenuSubscribeHandler(this));
+        exactHandlers.put("MENU_LIST", new MenuListHandler(this));
+        exactHandlers.put("MENU_HELP", new MenuHelpHandler(this));
+        exactHandlers.put("ADMIN_ADD_MACHINE", new AdminAddMachineHandler(this));
+        exactHandlers.put("ADMIN_DELETE_MACHINE", new AdminDeleteMachineHandler(this));
+        exactHandlers.put("BACK_TO_MAIN", new BackHandler(this));
+
+        prefixHandlers.put("SUB_", new SubscribeCallbackHandler(subscriberService, subscriptionService, this));
+        prefixHandlers.put("UNSUB_", new UnsubscriberCallbackHandler(subscriberService, subscriptionService, this));
+        prefixHandlers.put("INFO_", new InfoCallbackHandler(this));
+
+        adminEventFlowHandler = new AdminEventFlowHandler(this, machineService, machineEventService);
+        prefixHandlers.put("EVENT_", adminEventFlowHandler);
+    }
+
+    // === Входящие обновления ===
+    @Override
+    public void onUpdateReceived(Update update) {
+        if (update.hasCallbackQuery()) {
+            handleCallback(update);
+            return;
+        }
+
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            handleMessage(update);
+        }
+    }
+
+    // === Обработка callback-кнопок ===
+    private void handleCallback(Update update) {
+        String data = update.getCallbackQuery().getData();
+        Long chatId = update.getCallbackQuery().getMessage().getChatId();
+        Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
+
+        deleteMessage(chatId, messageId);
+
+        CallbackHandler handler = exactHandlers.get(data);
+        if (handler != null) {
+            handler.handle(chatId, data);
+            return;
+        }
+
+        for (Map.Entry<String, CallbackHandler> entry : prefixHandlers.entrySet()) {
+            if (data.startsWith(entry.getKey())) {
+                entry.getValue().handle(chatId, data);
+                return;
+            }
+        }
+
+        send(chatId, "Unknown command");
+    }
+
+    // === Обработка текстовых сообщений ===
+    private void handleMessage(Update update) {
+        String text = update.getMessage().getText();
+        Long chatId = update.getMessage().getChatId();
+        String user = update.getMessage().getFrom().getUserName();
+        String langCode = update.getMessage().getFrom().getLanguageCode(); // "ru", "en", "nl" и т.д.
+
+        if (text == null) return;
+
+        if (text.equals("/start")) {
+            subscriberService.register(chatId, user, langCode);  // <-- передаём язык
+            sendMenu(chatId, localeService.msg(chatId, "bot.welcome"));
+            return;
+        }
+
+        if (text.equals("/myid")) {
+            send(chatId, localeService.msg(chatId, "bot.your_chat_id", chatId));
+            return;
+        }
+
+        if (text.equals("/admin")) {
+            if (!isAdmin(chatId)) {
+                send(chatId, localeService.msg(chatId, "bot.access_denied"));
+                return;
+            }
+            sendAdminMenu(chatId);
+            return;
+        }
+
+        if (text.equals("/event")) {
+            adminEventFlowHandler.showMachineList(chatId);
+            return;
+        }
+
+        // === Ожидание ввода от администратора ===
+        String state = adminState.get(chatId);
+
+        if (state != null && isAdmin(chatId)) {
+            if (state.equals("WAIT_MACHINE_NAME")) {
+                machineService.addMachine(text);
+                adminState.remove(chatId);
+                send(chatId, localeService.msg(chatId, "bot.machine_added", text));
+                return;
+            }
+
+            if (state.equals("WAIT_DELETE_MACHINE_NAME")) {
+                boolean deleted = machineService.deleteMachine(text);
+                adminState.remove(chatId);
+                send(chatId, deleted
+                        ? localeService.msg(chatId, "bot.machine_deleted", text)
+                        : localeService.msg(chatId, "bot.machine_not_found", text));
+                return;
+            }
+        }
+
+        if (text.startsWith("/subscribe")) {
+            String[] parts = text.split(" ");
+            if (parts.length < 2) {
+                send(chatId, localeService.msg(chatId, "bot.subscribe_usage"));
+                return;
+            }
+            var sub = subscriberService.getByChatId(chatId);
+            subscriptionService.subscribe(sub.getId(), parts[1]);
+            send(chatId, localeService.msg(chatId, "bot.subscribed", parts[1]));
+            return;
+        }
+
+        if (text.startsWith("/unsubscribe")) {
+            String[] parts = text.split(" ");
+            if (parts.length < 2) {
+                send(chatId, localeService.msg(chatId, "bot.unsubscribe_usage"));
+                return;
+            }
+            var sub = subscriberService.getByChatId(chatId);
+            subscriptionService.unsubscribe(sub.getId(), parts[1]);
+            send(chatId, localeService.msg(chatId, "bot.unsubscribed", parts[1]));
+            return;
+        }
+
+        if (text.equals("/list")) {
+            var sub = subscriberService.getByChatId(chatId);
+            var list = subscriptionService.listMachines(sub.getId());
+
+            if (list.isEmpty()) {
+                send(chatId, localeService.msg(chatId, "bot.no_subscriptions"));
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (String m : list) {
+                sb.append(localeService.msg(chatId, "bot.machine_prefix", m)).append("\n");
+            }
+            send(chatId, localeService.msg(chatId, "bot.subscriptions_title") + "\n" + sb);
+            return;
+        }
+
+        if (text.startsWith("/setemail")) {
+            String[] parts = text.split(" ");
+            if (parts.length < 2) {
+                send(chatId, localeService.msg(chatId, "bot.email_usage"));
+                return;
+            }
+            String email = parts[1];
+            subscriberService.setEmail(chatId, email);
+            send(chatId, localeService.msg(chatId, "bot.email_saved", email));
+        }
+    }
+
+    // === Вспомогательные методы ===
+
+    public Map<Long, String> getAdminState() {
+        return adminState;
+    }
+
+    public boolean isAdmin(Long chatId) {
+        return adminService.isAdmin(chatId);
+    }
+
+    public LocaleService getLocaleService() {
+        return localeService;
+    }
+
+    public void send(Long chatId, String text) {
+        try {
+            execute(new SendMessage(chatId.toString(), text));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteMessage(Long chatId, Integer messageId) {
+        try {
+            execute(new DeleteMessage(chatId.toString(), messageId));
+        } catch (TelegramApiException e) {
+            System.err.println("Could not delete message " + messageId + ": " + e.getMessage());
+        }
+    }
+
+    public void sendMainMenu(Long chatId) {
+        sendMenu(chatId, localeService.msg(chatId, "bot.welcome"));
+    }
+
+    public void sendWithKeyboard(Long chatId, String text, InlineKeyboardMarkup markup) {
+        try {
+            SendMessage msg = new SendMessage(chatId.toString(), text);
+            msg.setReplyMarkup(markup);
+            execute(msg);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendWithKeyboard(Long chatId, String text, List<List<InlineKeyboardButton>> rows) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(rows);
+        sendWithKeyboard(chatId, text, markup);
+    }
+
+    public void showMachines(Long chatId) {
+        List<String> machines = machineService.getAllMachineIds();
+
+        if (machines.isEmpty()) {
+            send(chatId, localeService.msg(chatId, "bot.no_machines"));
+            return;
+        }
+
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        for (String m : machines) {
+            rows.add(List.of(btn("📡 " + m, "SUB_" + m)));
+        }
+        rows.add(List.of(btn(localeService.msg(chatId, "bot.back"), "BACK_TO_MAIN")));
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.machines_title"), rows);
+    }
+
+    public void showSubscriptions(Long chatId) {
+        var sub = subscriberService.getByChatId(chatId);
+        var list = subscriptionService.listMachines(sub.getId());
+
+        if (list.isEmpty()) {
+            send(chatId, localeService.msg(chatId, "bot.no_subscriptions"));
+            return;
+        }
+
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        for (String m : list) {
+            rows.add(List.of(
+                    btn("📡 " + m, "INFO_" + m),
+                    btn("❌", "UNSUB_" + m)
+            ));
+        }
+        rows.add(List.of(btn(localeService.msg(chatId, "bot.back"), "BACK_TO_MAIN")));
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.subscriptions_title"), rows);
+    }
+
+    public void sendAdminMenu(Long chatId) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(List.of(
+                List.of(btn(localeService.msg(chatId, "bot.admin_add_machine"), "ADMIN_ADD_MACHINE")),
+                List.of(btn(localeService.msg(chatId, "bot.admin_delete_machine"), "ADMIN_DELETE_MACHINE")),
+                List.of(btn(localeService.msg(chatId, "bot.admin_send_event"), "EVENT_OPEN"))
+        ));
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.admin_panel"), markup);
+    }
+
+    public void sendMenu(Long chatId, String text) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(List.of(
+                List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),
+                List.of(btn(localeService.msg(chatId, "bot.menu.my_subscriptions"), "MENU_LIST")),
+                List.of(btn(localeService.msg(chatId, "bot.menu.help"), "MENU_HELP"))
+        ));
+        sendWithKeyboard(chatId, text, markup);
+    }
+
+    public InlineKeyboardButton btn(String text, String data) {
+        InlineKeyboardButton b = new InlineKeyboardButton();
+        b.setText(text);
+        b.setCallbackData(data);
+        return b;
+    }
+
+    @Override
+    public String getBotUsername() { return username; }
+
+    @Override
+    public String getBotToken() { return token; }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/config/BotConfig.java">
+package com.example.demo.config;
+
+import com.example.demo.bot.MachineBot;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
+@Configuration
+public class BotConfig {
+
+    @Bean
+    public TelegramBotsApi telegramBotsApi(MachineBot bot) throws TelegramApiException {
+        TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
+        api.registerBot(bot);
+        return api;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/config/KafkaConsumerConfig.java">
+package com.example.demo.config;
+
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Configuration
+public class KafkaConsumerConfig {
+
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean
+    public ConsumerFactory<String, MachineStatusChangeEvent> consumerFactory() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+
+        Deserializer<MachineStatusChangeEvent> valueDeserializer = (topic, data) -> {
+            try {
+                return mapper.readValue(data, MachineStatusChangeEvent.class);
+            } catch (Exception e) {
+                throw new RuntimeException("Ошибка десериализации события", e);
+            }
+        };
+
+        Map<String, Object> config = new HashMap<>();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "machine-bot-group");
+        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), valueDeserializer);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, MachineStatusChangeEvent>
+    kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, MachineStatusChangeEvent> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/config/KafkaProducerConfig.java">
+package com.example.demo.config;
+
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Configuration
+public class KafkaProducerConfig {
+
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean
+    public ProducerFactory<String, MachineStatusChangeEvent> producerFactory() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule()); // нужен для Instant в событии
+
+        Serializer<MachineStatusChangeEvent> valueSerializer = (topic, data) -> {
+            try {
+                return mapper.writeValueAsBytes(data);
+            } catch (Exception e) {
+                throw new RuntimeException("Ошибка сериализации события", e);
+            }
+        };
+
+        var factory = new DefaultKafkaProducerFactory<String, MachineStatusChangeEvent>(config);
+        factory.setValueSerializer(valueSerializer);
+        return factory;
+    }
+
+    @Bean
+    public KafkaTemplate<String, MachineStatusChangeEvent> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/config/KafkaTopicConfig.java">
+package com.example.demo.config;
+
+import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.config.TopicBuilder;
+
+@Configuration
+public class KafkaTopicConfig {
+
+    @Bean
+    public NewTopic machineStatusEventsTopic() {
+        return TopicBuilder.name("machine-status-events")
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/config/MessageSourceConfig.java">
+package com.example.demo.config;
+
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+
+@Configuration
+public class MessageSourceConfig {
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("messages");
+        source.setDefaultEncoding("UTF-8");
+        source.setUseCodeAsDefaultMessage(true);
+        return source;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/controller/AdminController.java">
+package com.example.demo.controller;
+
+import com.example.demo.service.AdminService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/admins")
+public class AdminController {
+    private final AdminService adminService;
+
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addAdmin(@RequestBody Map<String, Long> request) {
+        Long chatId = request.get("chatId");
+        if (chatId == null) {
+            return  ResponseEntity.badRequest().body(Map.of("error", "chatId is required"));
+        }
+        adminService.addAdmin(chatId);
+        return ResponseEntity.ok(Map.of("status", "admin added", "chatId", chatId));
+    }
+
+    @DeleteMapping("/{chatId}")
+    public ResponseEntity<?> removeAdmin(@PathVariable Long chatId) {
+        adminService.removeAdmin(chatId);
+        return ResponseEntity.ok(Map.of("status", "admin removed", "chatId", chatId));
+    }
+
+}
+</file>
+
+<file path="src/main/java/com/example/demo/controller/MachineController.java">
+package com.example.demo.controller;
+
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.example.demo.service.MachineEventService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/machines")
+public class MachineController {
+
+    private final MachineEventService machineEventService;
+
+    public MachineController(MachineEventService machineEventService) {
+        this.machineEventService = machineEventService;
+    }
+
+    @PostMapping("/status")
+    public ResponseEntity<String> updateStatus(@RequestBody MachineStatusChangeEvent event) {
+        machineEventService.process(event);
+        return ResponseEntity.ok("OK");
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/DemoBotTelegaApplication.java">
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.EnableKafka;
+
+@EnableKafka
+@SpringBootApplication
+public class DemoBotTelegaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoBotTelegaApplication.class, args);
+	}
+}
+</file>
+
+<file path="src/main/java/com/example/demo/entity/Admin.java">
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "admin")
+public class Admin {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "chat_id", unique = true, nullable = false)
+    private Long chatId;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    public Admin() {}
+
+    public Admin(Long chatId) {
+        this.chatId = chatId;
+        this.createdAt = LocalDateTime.now();
+    }
+
+}
+</file>
+
+<file path="src/main/java/com/example/demo/entity/Machine.java">
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Machine {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String machineId;
+
+    public Machine() {}
+
+    public Machine(String machineId) {
+        this.machineId = machineId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(String machineId) {
+        this.machineId = machineId;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/entity/MachineSubscription.java">
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class MachineSubscription {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long subscriberId;
+    private String machineId;
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    public MachineSubscription() {}
+
+    public MachineSubscription(Long id, Long subscriberId, String machineId, LocalDateTime createdAt) {
+        this.id = id;
+        this.subscriberId = subscriberId;
+        this.machineId = machineId;
+        this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getSubscriberId() {
+        return subscriberId;
+    }
+
+    public String getMachineId() {
+        return machineId;
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/entity/Subscriber.java">
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class Subscriber {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long chatId;
+    private String username;
+    private String email;
+    private String language;   // код языка: "ru", "en", "nl"
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    public Subscriber() {}
+
+    public Subscriber(Long id, Long chatId, String username, LocalDateTime createdAt) {
+        this.id = id;
+        this.chatId = chatId;
+        this.username = username;
+        this.createdAt = createdAt;
+    }
+
+    public Long getId() { return id; }
+
+    public Long getChatId() { return chatId; }
+
+    public String getUsername() { return username; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getLanguage() { return language; }
+
+    public void setLanguage(String language) { this.language = language; }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/AdminAddMachineHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class AdminAddMachineHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public AdminAddMachineHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        if (!bot.isAdmin(chatId)) {
+            bot.send(chatId, "Нет доступа");
+            return;
+        }
+        bot.getAdminState().put(chatId, "WAIT_MACHINE_NAME");
+        bot.send(chatId, "Введите название станка:\nMACHINE-XXX");
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/AdminDeleteMachineHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class AdminDeleteMachineHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public AdminDeleteMachineHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        if (!bot.isAdmin(chatId)) {
+            bot.send(chatId, "Нет доступа!");
+            return;
+        }
+        bot.getAdminState().put(chatId, "WAIT_DELETE_MACHINE_NAME");
+        bot.send(chatId, "Введите название станка для удаления: \nMACHINE-XXX");
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/AdminEventFlowHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+import com.example.demo.machine.MachineStatus;
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.example.demo.service.MachineEventService;
+import com.example.demo.service.MachineService;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import static com.example.demo.machine.MachineStatus.*;
+import java.util.stream.Collectors;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/*
+* Флоу:
+* /event - выбор станка
+*        - выбор prevState
+*        - выбор newState
+*        - отправка в MachineEventService
+*/
+
+public class AdminEventFlowHandler implements CallbackHandler {
+
+    private static final List<MachineStatus> STATUSES = List.of(
+            RUN,
+            STOP,
+            CONNECTION_LOST
+    );
+
+    private static final String BACK_DATA = "EVENT_BACK";
+
+    private final MachineBot bot;
+    private final MachineService machineService;
+    private final MachineEventService machineEventService;
+
+    public AdminEventFlowHandler(MachineBot bot,
+                                 MachineService machineService,
+                                 MachineEventService machineEventService) {
+        this.bot = bot;
+        this.machineService = machineService;
+        this.machineEventService = machineEventService;
+    }
+
+    @Override
+    public void handle(Long chatId, String data) {
+        if (!bot.isAdmin(chatId)) {
+            bot.send(chatId, "Нет доступа!");
+            return;
+        }
+
+        if (data.equals(BACK_DATA)) {
+            handleBack(chatId);
+            return;
+        }
+
+        if (data.equals("EVENT_OPEN")) {
+            showMachineList(chatId);
+
+        } else if (data.startsWith("EVENT_MACHINE_")) {
+            handleMachineSelected(chatId, data);
+
+        } else if (data.startsWith("EVENT_PREV_")) {
+            handlePrevStateSelected(chatId, data);
+
+        } else if (data.startsWith("EVENT_NEW_")) {
+            handleNewStateSelected(chatId, data);
+        }
+    }
+
+    // Шаг 1: показать список станков (вызывается из бота по команде /event)
+    public void showMachineList(Long chatId) {
+        if (!bot.isAdmin(chatId)) {
+            bot.send(chatId, "Нет доступа!");
+            return;
+        }
+
+        List<String> machines = machineService.getAllMachineIds();
+        if (machines.isEmpty()) {
+            bot.send(chatId, "Нет станков в системе. Сначала добавьте станок через /admin.");
+            return;
+        }
+
+        List<List<InlineKeyboardButton>> rows = machines.stream()
+                .map(m -> List.of(bot.btn("⚙ " + m, "EVENT_MACHINE_" + m)))
+                .collect(Collectors.toList());
+        rows.add(List.of(bot.btn("🔙 Назад", BACK_DATA)));
+
+        bot.sendWithKeyboard(chatId, "Выберите станок для отправки события:", rows);
+    }
+
+    // Шаг 2: станок выбран — спрашиваем предыдущий статус
+    private void handleMachineSelected(Long chatId, String data) {
+        String machineId = data.replace("EVENT_MACHINE_", "");
+
+        bot.getAdminState().put(chatId, "EVENT_WAIT_PREV:" + machineId);
+
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        for (MachineStatus s : STATUSES) {
+            rows.add(List.of(bot.btn(statusLabel(s), "EVENT_PREV_" + s.name())));
+        }
+        rows.add(List.of(bot.btn("🔙 Назад", BACK_DATA)));
+
+        bot.sendWithKeyboard(chatId, "Станок: " + machineId + "\nВыберите предыдущий статус:", rows);
+    }
+
+    // Шаг 3: prevState выбран — спрашиваем новый статус
+    private void handlePrevStateSelected(Long chatId, String data) {
+        String state = bot.getAdminState().get(chatId);
+        if (state == null || !state.startsWith("EVENT_WAIT_PREV:")) {
+            bot.send(chatId, "Сначала выберите станок через /event");
+            return;
+        }
+
+        String machineId = state.replace("EVENT_WAIT_PREV:", "");
+        String prevState = data.replace("EVENT_PREV_", "");
+
+        bot.getAdminState().put(chatId, "EVENT_WAIT_NEW:" + machineId + ":" + prevState);
+
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        for (MachineStatus s : STATUSES) {
+            rows.add(List.of(bot.btn(statusLabel(s), "EVENT_NEW_" + s.name())));
+        }
+        rows.add(List.of(bot.btn("🔙 Назад", BACK_DATA)));
+
+        bot.sendWithKeyboard(chatId,
+                "Станок: " + machineId + "\nПредыдущий: " + statusLabel(MachineStatus.valueOf(prevState)) +
+                        "\nВыберите новый статус:", rows);
+    }
+
+    // Шаг 4: newState выбран — отправляем событие
+    private void handleNewStateSelected(Long chatId, String data) {
+        String state = bot.getAdminState().get(chatId);
+        if (state == null || !state.startsWith("EVENT_WAIT_NEW:")) {
+            bot.send(chatId, "Сначала выберите станок через /event");
+            return;
+        }
+
+        String[] parts = state.replace("EVENT_WAIT_NEW:", "").split(":");
+        if (parts.length < 2) {
+            bot.send(chatId, "Ошибка состояния. Начните заново: /event");
+            bot.getAdminState().remove(chatId);
+            return;
+        }
+
+        String machineId = parts[0];
+        MachineStatus prevState = MachineStatus.valueOf(parts[1]);
+        MachineStatus newState = MachineStatus.valueOf(data.replace("EVENT_NEW_", ""));
+
+        bot.getAdminState().remove(chatId);
+
+        MachineStatusChangeEvent event = new MachineStatusChangeEvent(
+                machineId,
+                Instant.now(),
+                prevState,
+                newState
+        );
+
+        machineEventService.process(event);
+
+        bot.send(chatId,
+                "✅ Событие отправлено!\n" +
+                        "Станок: " + machineId + "\n" +
+                        statusLabel(prevState) + " → " + statusLabel(newState));
+    }
+
+    private void handleBack(Long chatId) {
+        String state = bot.getAdminState().get(chatId);
+        if (state == null) {
+            bot.sendAdminMenu(chatId);
+            return;
+        }
+
+        if (state.startsWith("EVENT_WAIT_PREV:")) {
+            // Возврат к списку станков
+            bot.getAdminState().remove(chatId);
+            showMachineList(chatId);
+        } else if (state.startsWith("EVENT_WAIT_NEW:")) {
+            // Возврат к выбору предыдущего статуса
+            String[] parts = state.replace("EVENT_WAIT_NEW:", "").split(":");
+            if (parts.length >= 1) {
+                String machineId = parts[0];
+                bot.getAdminState().put(chatId, "EVENT_WAIT_PREV:" + machineId);
+                // Показываем выбор предыдущего статуса
+                List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+                for (MachineStatus s : STATUSES) {
+                    rows.add(List.of(bot.btn(statusLabel(s), "EVENT_PREV_" + s.name())));
+                }
+                rows.add(List.of(bot.btn("🔙 Назад", BACK_DATA)));
+                bot.sendWithKeyboard(chatId, "Станок: " + machineId + "\nВыберите предыдущий статус:", rows);
+            } else {
+                bot.sendAdminMenu(chatId);
+            }
+        } else {
+            bot.sendAdminMenu(chatId);
+        }
+    }
+
+    // Читаемые названия статусов
+    private String statusLabel(MachineStatus status) {
+        return switch (status) {
+            case RUN -> "▶ RUN";
+            case STOP -> "⏹ STOP";
+            case CONNECTION_LOST -> "❌ CONNECTION_LOST";
+        };
+    }
+
+    // Сохраняем доступ к adminState map при инициализации
+    public Map<Long, String> getStateMap() {
+        return bot.getAdminState();
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/BackHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class BackHandler implements CallbackHandler {
+    private final MachineBot bot;
+
+    public BackHandler(MachineBot bot) {
+        this.bot = bot;
+    }
+
+    @Override
+    public void handle(Long chatId, String data) {
+        bot.sendMainMenu(chatId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/CallbackHandler.java">
+package com.example.demo.handler;
+
+public interface CallbackHandler {
+    void handle(Long chatId, String data);
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/InfoCallbackHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class InfoCallbackHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public InfoCallbackHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        String machineId = data.replace("INFO_", "");
+        bot.send(chatId, "Станок: " + machineId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/LanguageCallbackHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.service.LocaleService;
+import com.example.demo.service.SubscriberService;
+import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.bots.AbsSender;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+@Component
+public class LanguageCallbackHandler implements CallbackHandler {
+
+    private final SubscriberService subscriberService;
+    private final LocaleService localeService;
+
+    public LanguageCallbackHandler(SubscriberService subscriberService, LocaleService localeService) {
+        this.subscriberService = subscriberService;
+        this.localeService = localeService;
+    }
+
+    @Override
+    public boolean isPrefix() {
+        return true; // Ловим кнопки по префиксу
+    }
+
+    @Override
+    public String getCallbackDataTarget() {
+        return "set_lang_"; // Будет реагировать на "set_lang_ru", "set_lang_en", "set_lang_nl"
+    }
+
+    @Override
+    public void handle(Update update, AbsSender bot) {
+        Long chatId = update.getCallbackQuery().getMessage().getChatId();
+        String callbackData = update.getCallbackQuery().getData();
+        String callbackQueryId = update.getCallbackQuery().getId();
+
+        // Вырезаем код языка из callbackData (останется "ru", "en" или "nl")
+        String newLang = callbackData.replace("set_lang_", "");
+
+        // 1. Обновляем язык в БД через наш готовый сервис
+        subscriberService.updateLanguage(chatId, newLang);
+
+        // 2. Убираем анимацию загрузки на кнопке в Telegram
+        try {
+            bot.execute(new AnswerCallbackQuery(callbackQueryId));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+        // 3. Отправляем подтверждение уже на НОВОМ выбранном языке
+        SendMessage response = new SendMessage();
+        response.setChatId(chatId.toString());
+        response.setText(localeService.getMessage("msg.language.changed", newLang));
+
+        try {
+            bot.execute(response);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/MenuHelpHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class MenuHelpHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public MenuHelpHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        bot.send(chatId, "/start\n/help\n/subscribe\n/unsubscribe\n/list");
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/MenuListHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class MenuListHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public MenuListHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        bot.showSubscriptions(chatId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/MenuSubscribeHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+
+public class MenuSubscribeHandler implements CallbackHandler {
+    private final MachineBot bot;
+    public MenuSubscribeHandler(MachineBot bot) { this.bot = bot; }
+    @Override
+    public void handle(Long chatId, String data) {
+        bot.showMachines(chatId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/SubscribeCallbackHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+import com.example.demo.service.SubscriberService;
+import com.example.demo.service.SubscriptionService;
+
+public class SubscribeCallbackHandler implements CallbackHandler {
+    private final SubscriberService subscriberService;
+    private final SubscriptionService subscriptionService;
+    private final MachineBot bot;
+    public SubscribeCallbackHandler(SubscriberService subscriberService,
+                                    SubscriptionService subscriptionService,
+                                    MachineBot bot) {
+        this.subscriberService = subscriberService;
+        this.subscriptionService = subscriptionService;
+        this.bot = bot;
+    }
+    @Override
+    public void handle(Long chatId, String data) {
+        String machineId = data.replace("SUB_", "");
+        var sub = subscriberService.getByChatId(chatId);
+        subscriptionService.subscribe(sub.getId(), machineId);
+        bot.send(chatId, "📡 Подписка: " + machineId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/handler/UnsubscriberCallbackHandler.java">
+package com.example.demo.handler;
+
+import com.example.demo.bot.MachineBot;
+import com.example.demo.service.SubscriberService;
+import com.example.demo.service.SubscriptionService;
+
+public class UnsubscriberCallbackHandler implements CallbackHandler {
+    private final SubscriberService subscriberService;
+    private final SubscriptionService subscriptionService;
+    private final MachineBot bot;
+    public UnsubscriberCallbackHandler(SubscriberService subscriberService,
+                                       SubscriptionService subscriptionService,
+                                       MachineBot bot) {
+        this.subscriberService = subscriberService;
+        this.subscriptionService = subscriptionService;
+        this.bot = bot;
+    }
+    @Override
+    public void handle(Long chatId, String data) {
+        String machineId = data.replace("UNSUB_", "");
+        var sub = subscriberService.getByChatId(chatId);
+        subscriptionService.unsubscribe(sub.getId(), machineId);
+        bot.send(chatId, "❌ Отписка: " + machineId);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/machine/MachineStatus.java">
+package com.example.demo.machine;
+
+public enum MachineStatus {
+    RUN,
+    STOP,
+    CONNECTION_LOST
+}
+</file>
+
+<file path="src/main/java/com/example/demo/machine/MachineStatusChangeEvent.java">
+package com.example.demo.machine;
+
+import java.time.Instant;
+
+public record MachineStatusChangeEvent(
+        String machineId,
+        Instant stamp,
+        MachineStatus prevState,
+        MachineStatus newState
+) {
+}
+</file>
+
+<file path="src/main/java/com/example/demo/repo/AdminRepository.java">
+package com.example.demo.repo;
+
+import com.example.demo.entity.Admin;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface AdminRepository extends JpaRepository<Admin, Long> {
+    Optional<Admin> findByChatId(Long chatId);
+    boolean existsByChatId(Long chatId);
+}
+</file>
+
+<file path="src/main/java/com/example/demo/repo/MachineRepository.java">
+package com.example.demo.repo;
+
+import com.example.demo.entity.Machine;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface MachineRepository extends JpaRepository<Machine, Long> {
+    Optional<Machine> findByMachineId(String machineId);
+    boolean existsByMachineId(String machineId);
+}
+</file>
+
+<file path="src/main/java/com/example/demo/repo/MachineSubscriptionRepository.java">
+package com.example.demo.repo;
+
+import com.example.demo.entity.MachineSubscription;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface MachineSubscriptionRepository extends JpaRepository<MachineSubscription, Long> {
+
+    List<MachineSubscription> findBySubscriberId(Long subscriberId);
+
+    List<MachineSubscription> findByMachineId(String machineId);
+
+    boolean existsBySubscriberIdAndMachineId(Long subscriberId, String machineId);
+
+    void deleteBySubscriberIdAndMachineId(Long subscriberId, String machineId);
+}
+</file>
+
+<file path="src/main/java/com/example/demo/repo/SubscriberRepository.java">
+package com.example.demo.repo;
+
+import com.example.demo.entity.Subscriber;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface SubscriberRepository extends JpaRepository<Subscriber, Long> {
+    Optional<Subscriber> findByChatId(Long chatId);
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/AdminService.java">
+package com.example.demo.service;
+
+import com.example.demo.entity.Admin;
+import com.example.demo.repo.AdminRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AdminService {
+    private final AdminRepository adminRepository;
+
+    public AdminService(AdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
+    }
+
+    public boolean isAdmin(Long chatId) {
+        return chatId != null && adminRepository.existsByChatId(chatId);
+    }
+
+    public void addAdmin(Long chatId) {
+        if (!adminRepository.existsByChatId(chatId)) {
+            adminRepository.save(new Admin(chatId));
+        }
+    }
+
+    public void removeAdmin(Long chatId) {
+        adminRepository.findByChatId(chatId).ifPresent(adminRepository::delete);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/EmailNotificationService.java">
+package com.example.demo.service;
+
+import com.example.demo.entity.Subscriber;
+import com.example.demo.machine.MachineStatusChangeEvent;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailNotificationService {
+    private final JavaMailSender mailSender;
+
+    public EmailNotificationService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    public void sendNotification(Subscriber subscriber, MachineStatusChangeEvent event) {
+        if (subscriber.getEmail() == null || subscriber.getEmail().isBlank()) return;
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(subscriber.getEmail());
+        message.setSubject("Станок " + event.machineId() + " изменил статус");
+        message.setText(
+                "Станок: " + event.machineId() + "\n" +
+                        "Статус: " + event.prevState() + " -> " + event.newState() + "\n" +
+                        "Время: " + event.stamp()
+        );
+        mailSender.send(message);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/LocaleService.java">
+package com.example.demo.service;
+
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+
+import java.util.Locale;
+
+@Service
+public class LocaleService {
+
+    private final MessageSource messageSource;
+    private final SubscriberService subscriberService;
+
+    public LocaleService(MessageSource messageSource, SubscriberService subscriberService) {
+        this.messageSource = messageSource;
+        this.subscriberService = subscriberService;
+    }
+
+    // Получить перевод по chatId пользователя
+    public String msg(Long chatId, String key, Object... args) {
+        Locale locale = getLocale(chatId);
+        return messageSource.getMessage(key, args, locale);
+    }
+
+    // Получить перевод по явно заданному language code ("ru", "en", "nl")
+    public String msg(String language, String key, Object... args) {
+        Locale locale = toLocale(language);
+        return messageSource.getMessage(key, args, locale);
+    }
+
+    // Определить Locale пользователя из БД
+    public Locale getLocale(Long chatId) {
+        var subscriber = subscriberService.getByChatId(chatId);
+        if (subscriber == null || subscriber.getLanguage() == null) {
+            return Locale.ENGLISH;
+        }
+        return toLocale(subscriber.getLanguage());
+    }
+
+    private Locale toLocale(String lang) {
+        if (lang == null) return Locale.ENGLISH;
+        return switch (lang) {
+            case "ru" -> new Locale("ru");
+            case "nl" -> new Locale("nl");
+            default  -> Locale.ENGLISH;
+        };
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/MachineEventConsumer.java">
+package com.example.demo.service;
+
+import com.example.demo.machine.MachineStatusChangeEvent;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+// @Service
+public class MachineEventConsumer {
+    private final MachineEventService machineEventService;
+
+    public MachineEventConsumer(MachineEventService machineEventService) {
+        this.machineEventService = machineEventService;
+    }
+
+    // @KafkaListener(topics = "machine-status-events", groupId = "machine-bot-group")
+    public void consume(MachineStatusChangeEvent event) {
+        System.out.println(">>> Kafka получила событие: " + event.machineId());
+        machineEventService.process(event);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/MachineEventProducer.java">
+package com.example.demo.service;
+
+import com.example.demo.machine.MachineStatusChangeEvent;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+//@Service
+public class MachineEventProducer {
+
+    private static final String TOPIC = "machine-status-events";
+
+    private final KafkaTemplate<String, MachineStatusChangeEvent> kafkaTemplate;
+
+    public MachineEventProducer(KafkaTemplate<String, MachineStatusChangeEvent> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    public void publish(MachineStatusChangeEvent event) {
+        kafkaTemplate.send(TOPIC, event.machineId(), event);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/MachineEventService.java">
+package com.example.demo.service;
+
+import com.example.demo.bot.MachineBot;
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.example.demo.repo.SubscriberRepository;
+import com.example.demo.repo.MachineSubscriptionRepository;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+@Service
+public class MachineEventService {
+
+    private final MachineSubscriptionRepository subscriptionRepository;
+    private final SubscriberRepository subscriberRepository;
+    private final MachineBot machineBot;
+    private final EmailNotificationService emailNotificationService;
+
+    public MachineEventService(
+            MachineSubscriptionRepository subscriptionRepository,
+            SubscriberRepository subscriberRepository,
+            @Lazy MachineBot machineBot,
+            EmailNotificationService emailNotificationService) {
+
+        this.subscriptionRepository = subscriptionRepository;
+        this.subscriberRepository = subscriberRepository;
+        this.machineBot = machineBot;
+        this.emailNotificationService = emailNotificationService;
+    }
+
+    public void process(MachineStatusChangeEvent event) {
+        var subscriptions = subscriptionRepository.findByMachineId(event.machineId());
+        String text = buildMessage(event);
+        InlineKeyboardMarkup keyboard = buildUnsubscribeButton(event.machineId());
+
+        for (var subscription : subscriptions) {
+            subscriberRepository.findById(subscription.getSubscriberId()).ifPresent(s -> {
+                machineBot.sendWithKeyboard(s.getChatId(), text, keyboard);
+                emailNotificationService.sendNotification(s, event);
+            });
+        }
+    }
+
+    private InlineKeyboardMarkup buildUnsubscribeButton(String machineId) {
+        InlineKeyboardButton button = new InlineKeyboardButton();
+        button.setText("Отписаться от этого станка");
+        button.setCallbackData("UNSUB_" + machineId);
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(List.of(List.of(button)));
+        return markup;
+    }
+
+    private String buildMessage(MachineStatusChangeEvent event) {
+        String time = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
+                .withZone(ZoneOffset.UTC)
+                .format(event.stamp());
+
+        return """
+                ⚙ Станок: %s
+
+                Изменение статуса:
+
+                %s → %s
+
+                Время:
+                %s UTC
+                """
+                .formatted(event.machineId(), event.prevState(), event.newState(), time);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/MachineService.java">
+package com.example.demo.service;
+
+import com.example.demo.entity.Machine;
+import com.example.demo.repo.MachineRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MachineService {
+    private final MachineRepository machineRepository;
+
+    public MachineService(MachineRepository machineRepository) {
+        this.machineRepository = machineRepository;
+    }
+
+    public List<String> getAllMachineIds() {
+        return machineRepository.findAll()
+                .stream()
+                .map(Machine::getMachineId)
+                .toList();
+    }
+
+    public void addMachine(String machineId) {
+        if (!machineRepository.existsByMachineId(machineId)) {
+            machineRepository.save(new Machine(machineId));
+        }
+    }
+
+    public boolean deleteMachine(String machineId) {
+        return machineRepository.findByMachineId(machineId)
+                .map(machine -> {
+                    machineRepository.delete(machine);
+                    return true;
+                })
+                .orElse(false);
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/SubscriberService.java">
+package com.example.demo.service;
+
+import com.example.demo.entity.Subscriber;
+import com.example.demo.repo.SubscriberRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+
+@Service
+public class SubscriberService {
+
+    private final SubscriberRepository repo;
+
+    public SubscriberService(SubscriberRepository repo) {
+        this.repo = repo;
+    }
+
+    // languageCode — код языка из Telegram ("ru", "en", "nl" и т.д.)
+    public Subscriber register(Long chatId, String username, String languageCode) {
+        return repo.findByChatId(chatId)
+                .orElseGet(() -> {
+                    Subscriber s = new Subscriber(null, chatId, username, LocalDateTime.now());
+                    s.setLanguage(languageCode != null ? languageCode : "en");
+                    return repo.save(s);
+                });
+    }
+
+    public Subscriber getByChatId(Long chatId) {
+        return repo.findByChatId(chatId).orElse(null);
+    }
+
+    public boolean exists(Long chatId) {
+        return repo.findByChatId(chatId).isPresent();
+    }
+
+    public void setEmail(Long chatId, String email) {
+        repo.findByChatId(chatId).ifPresent(subscriber -> {
+            subscriber.setEmail(email);
+            repo.save(subscriber);
+        });
+    }
+
+    @Transactional
+    public void updateLanguage(Long chatId, String newLanguageCode) {
+        repo.findByChatId(chatId).ifPresent(subscriber -> {
+            subscriber.setLanguage(newLanguageCode != null ? newLanguageCode : "en");
+            repo.save(subscriber);
+        });
+    }
+}
+</file>
+
+<file path="src/main/java/com/example/demo/service/SubscriptionService.java">
+package com.example.demo.service;
+
+import com.example.demo.entity.MachineSubscription;
+import com.example.demo.repo.MachineSubscriptionRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class SubscriptionService {
+
+    private final MachineSubscriptionRepository repo;
+
+    public SubscriptionService(MachineSubscriptionRepository repo) {
+        this.repo = repo;
+    }
+
+    public void subscribe(Long subscriberId, String machineId) {
+        if (repo.existsBySubscriberIdAndMachineId(subscriberId, machineId)) return;
+
+        repo.save(new MachineSubscription(
+                null,
+                subscriberId,
+                machineId,
+                LocalDateTime.now()
+        ));
+    }
+
+    @Transactional
+    public void unsubscribe(Long subscriberId, String machineId) {
+        repo.deleteBySubscriberIdAndMachineId(subscriberId, machineId);
+    }
+
+    public List<String> listMachines(Long subscriberId) {
+        return repo.findBySubscriberId(subscriberId)
+                .stream()
+                .map(MachineSubscription::getMachineId)
+                .toList();
+    }
+}
+</file>
+
+<file path="src/main/resources/application.properties">
+spring.application.name=DemoBotTelega
+
+# Database
+spring.datasource.url=jdbc:postgresql://localhost:5432/notify_machine
+spring.datasource.username=postgres
+spring.datasource.password=Glasner@08
+spring.jpa.hibernate.ddl-auto=update
+
+# Telegram Bot
+telegram.bot.username=TestNotifyTrk
+telegram.bot.token=8848305600:AAHKMC0Ph0SQk-SCnPtYYpvjshkVc6aFJM4
+
+# Kafka
+spring.kafka.bootstrap-servers=localhost:9092
+spring.kafka.properties.allow.auto.create.topics=true
+
+# Kafka Producer
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.ByteArraySerializer
+
+# Kafka Consumer
+spring.kafka.consumer.group-id=machine-bot-group
+spring.kafka.consumer.auto-offset-reset=earliest
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+# Mail
+spring.mail.host=smtp.gmail.com
+spring.mail.port=465
+spring.mail.username=h1llapple16@gmail.com
+spring.mail.password=loalezvzpjagtsty
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.ssl.enable=true
+
+# ????????? ????-???????????? Kafka (Consumer/Producer ????????? ???????)
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+</file>
+
+<file path="src/main/resources/messages_nl.properties">
+bot.welcome=Welkom!
+bot.menu.subscribe=Abonneren
+bot.menu.my_subscriptions=Mijn abonnementen
+bot.menu.help=Help
+bot.subscribed=? Geabonneerd: {0}
+bot.unsubscribed=? Afgemeld: {0}
+bot.no_subscriptions=U heeft geen abonnementen
+bot.subscriptions_title=Uw abonnementen:
+bot.machines_title=Kies een machine:
+bot.no_machines=Geen machines beschikbaar!
+bot.access_denied=Geen toegang!
+bot.admin_panel=Beheerspaneel
+bot.admin_add_machine=Machine toevoegen
+bot.admin_delete_machine=Machine verwijderen
+bot.admin_send_event=? Gebeurtenis versturen
+bot.admin_enter_machine_name=Voer machinenaam in:\nMACHINE-XXX
+bot.admin_enter_delete_name=Voer machinenaam in om te verwijderen:\nMACHINE-XXX
+bot.machine_added=Machine toegevoegd: {0}
+bot.machine_not_found=Machine niet gevonden: {0}
+bot.machine_deleted=Machine verwijderd: {0}
+bot.your_chat_id=Uw chatId: {0}
+bot.email_saved=E-mail opgeslagen: {0}\nU ontvangt nu meldingen per e-mail
+bot.email_usage=Gebruik:\n/setemail your@email.com
+bot.subscribe_usage=Gebruik:\n/subscribe MACHINE-001
+bot.unsubscribe_usage=Gebruik:\n/unsubscribe MACHINE-001
+bot.back=? Terug
+bot.unsubscribe_button=Afmelden van deze machine
+bot.machine_prefix=? Machine ?{0}
+bot.your_subscriptions=Uw abonnementen:\n{0}
+bot.event_sent=? Gebeurtenis verzonden!\nMachine: {0}\n{1} ? {2}
+bot.event_select_machine=Selecteer een machine voor de gebeurtenis:
+bot.event_no_machines=Geen machines in het systeem. Voeg eerst een machine toe via /admin.
+bot.event_select_prev=Machine: {0}\nSelecteer vorige status:
+bot.event_select_new=Machine: {0}\nVorige: {1}\nSelecteer nieuwe status:
+bot.event_start_with_event=Begin met /event commando
+bot.event_error=Statusfout. Begin opnieuw: /event
+
+inline.button.lang.ru=\uD83C\uDDF7\uD83C\uDDFA Russisch
+inline.button.lang.en=\uD83C\uDDEC\uD83C\uDDE7 Engels
+inline.button.lang.nl=\uD83C\uDDF3\uD83C\uDDF1 Nederlands
+msg.choose.language=Kies alstublieft uw taal:
+msg.language.changed=Taal succesvol gewijzigd naar Nederlands!
+</file>
+
+<file path="src/main/resources/messages_ru.properties">
+bot.welcome=\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C!
+bot.menu.subscribe=\u041F\u043E\u0434\u043F\u0438\u0441\u0430\u0442\u044C\u0441\u044F
+bot.menu.my_subscriptions=\u041C\u043E\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0438
+bot.menu.help=\u041F\u043E\u043C\u043E\u0449\u044C
+bot.subscribed=\uD83D\uDCE1 \u041F\u043E\u0434\u043F\u0438\u0441\u043A\u0430: {0}
+bot.unsubscribed=\u274C \u041E\u0442\u043F\u0438\u0441\u043A\u0430: {0}
+bot.no_subscriptions=\u0423 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043F\u043E\u0434\u043F\u0438\u0441\u043E\u043A
+bot.subscriptions_title=\u0412\u0430\u0448\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0438:
+bot.machines_title=\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0442\u0430\u043D\u043E\u043A:
+bot.no_machines=\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445 \u043C\u0430\u0448\u0438\u043D!
+bot.access_denied=\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u0430!
+bot.admin_panel=\u0410\u0434\u043C\u0438\u043D-\u043F\u0430\u043D\u0435\u043B\u044C
+bot.admin_add_machine=\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0442\u0430\u043D\u043E\u043A
+bot.admin_delete_machine=\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0441\u0442\u0430\u043D\u043E\u043A
+bot.admin_send_event=\uD83D\uDCE4 \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0441\u043E\u0431\u044B\u0442\u0438\u0435
+bot.admin_enter_machine_name=\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u0442\u0430\u043D\u043A\u0430:\nMACHINE-XXX
+bot.admin_enter_delete_name=\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u0442\u0430\u043D\u043A\u0430 \u0434\u043B\u044F \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F:\nMACHINE-XXX
+bot.machine_added=\u0421\u0442\u0430\u043D\u043E\u043A \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D: {0}
+bot.machine_not_found=\u0421\u0442\u0430\u043D\u043E\u043A \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D: {0}
+bot.machine_deleted=\u0421\u0442\u0430\u043D\u043E\u043A \u0443\u0434\u0430\u043B\u0451\u043D: {0}
+bot.your_chat_id=\u0412\u0430\u0448 chatId: {0}
+bot.email_saved=Email \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D: {0}\n\u0422\u0435\u043F\u0435\u0440\u044C \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F \u043E \u0441\u0442\u0430\u043D\u043A\u0430\u0445 \u0431\u0443\u0434\u0443\u0442 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u044C \u043D\u0430 \u043F\u043E\u0447\u0442\u0443
+bot.email_usage=\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435:\n/setemail your@email.com
+bot.subscribe_usage=\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435:\n/subscribe MACHINE-001
+bot.unsubscribe_usage=\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435:\n/unsubscribe MACHINE-001
+bot.back=\uD83D\uDD19 \u041D\u0430\u0437\u0430\u0434
+bot.unsubscribe_button=\u041E\u0442\u043F\u0438\u0441\u0430\u0442\u044C\u0441\u044F \u043E\u0442 \u044D\u0442\u043E\u0433\u043E \u0441\u0442\u0430\u043D\u043A\u0430
+bot.machine_prefix=\u2022 \u0421\u0442\u0430\u043D\u043E\u043A \u2116{0}
+bot.your_subscriptions=\u0412\u0430\u0448\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0438:\n{0}
+bot.event_sent=\u2705 \u0421\u043E\u0431\u044B\u0442\u0438\u0435 \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E!\n\u0421\u0442\u0430\u043D\u043E\u043A: {0}\n{1} \u2192 {2}
+bot.event_select_machine=\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0442\u0430\u043D\u043E\u043A \u0434\u043B\u044F \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438 \u0441\u043E\u0431\u044B\u0442\u0438\u044F:
+bot.event_no_machines=\u041D\u0435\u0442 \u0441\u0442\u0430\u043D\u043A\u043E\u0432 \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0435. \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0431\u0430\u0432\u044C\u0442\u0435 \u0441\u0442\u0430\u043D\u043E\u043A \u0447\u0435\u0440\u0435\u0437 /admin.
+bot.event_select_prev=\u0421\u0442\u0430\u043D\u043E\u043A: {0}\n\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0438\u0439 \u0441\u0442\u0430\u0442\u0443\u0441:
+bot.event_select_new=\u0421\u0442\u0430\u043D\u043E\u043A: {0}\n\u041F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0438\u0439: {1}\n\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043D\u043E\u0432\u044B\u0439 \u0441\u0442\u0430\u0442\u0443\u0441:
+bot.event_start_with_event=\u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0432\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0442\u0430\u043D\u043E\u043A \u0447\u0435\u0440\u0435\u0437 /event
+bot.event_error=\u041E\u0448\u0438\u0431\u043A\u0430 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F. \u041D\u0430\u0447\u043D\u0438\u0442\u0435 \u0437\u0430\u043D\u043E\u0432\u043E: /event
+
+inline.button.lang.ru=\uD83C\uDDF7\uD83C\uDDFA \u0420\u0443\u0441\u0441\u043A\u0438\u0439
+inline.button.lang.en=\uD83C\uDDEC\uD83C\uDDE7 English
+inline.button.lang.nl=\uD83C\uDDF3\uD83C\uDDF1 Nederlands
+msg.choose.language=\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u044F\u0437\u044B\u043A \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430:
+msg.language.changed=\u042F\u0437\u044B\u043A \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0438\u0437\u043C\u0435\u043D\u0451\u043D \u043D\u0430 \u0440\u0443\u0441\u0441\u043A\u0438\u0439!
+</file>
+
+<file path="src/main/resources/messages.properties">
+bot.welcome=Welcome!
+bot.menu.subscribe=Subscribe
+bot.menu.my_subscriptions=My subscriptions
+bot.menu.help=Help
+bot.subscribed=? Subscribed: {0}
+bot.unsubscribed=? Unsubscribed: {0}
+bot.no_subscriptions=You have no subscriptions
+bot.subscriptions_title=Your subscriptions:
+bot.machines_title=Choose a machine:
+bot.no_machines=No machines available!
+bot.access_denied=Access denied!
+bot.admin_panel=Admin panel
+bot.admin_add_machine=Add machine
+bot.admin_delete_machine=Delete machine
+bot.admin_send_event=? Send event
+bot.admin_enter_machine_name=Enter machine name:\nMACHINE-XXX
+bot.admin_enter_delete_name=Enter machine name to delete:\nMACHINE-XXX
+bot.machine_added=Machine added: {0}
+bot.machine_not_found=Machine not found: {0}
+bot.machine_deleted=Machine deleted: {0}
+bot.your_chat_id=Your chatId: {0}
+bot.email_saved=Email saved: {0}\nNow you will receive machine notifications by email
+bot.email_usage=Usage:\n/setemail your@email.com
+bot.subscribe_usage=Usage:\n/subscribe MACHINE-001
+bot.unsubscribe_usage=Usage:\n/unsubscribe MACHINE-001
+bot.back=? Back
+bot.unsubscribe_button=Unsubscribe from this machine
+bot.machine_prefix=? Machine ?{0}
+bot.your_subscriptions=Your subscriptions:\n{0}
+bot.event_sent=? Event sent!\nMachine: {0}\n{1} ? {2}
+bot.event_select_machine=Select a machine to send an event:
+bot.event_no_machines=No machines in the system. Add a machine via /admin first.
+bot.event_select_prev=Machine: {0}\nSelect previous status:
+bot.event_select_new=Machine: {0}\nPrevious: {1}\nSelect new status:
+bot.event_start_with_event=Start with /event command
+bot.event_error=State error. Start again: /event
+
+inline.button.lang.ru=\uD83C\uDDF7\uD83C\uDDFA Russian
+inline.button.lang.en=\uD83C\uDDEC\uD83C\uDDE7 English
+inline.button.lang.nl=\uD83C\uDDF3\uD83C\uDDF1 Dutch
+msg.choose.language=Please choose your language:
+msg.language.changed=Language successfully changed to English!
+</file>
+
+<file path="src/main/resources/static/index.html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка событий станков</title>
+</head>
+<body>
+
+<h2>Отправка событий станков</h2>
+
+<label>Machine ID</label>
+<input id="machineId" value="MACHINE-001">
+<br><br>
+
+<label>Предыдущий статус:</label>
+<select id="prevState">
+    <option>RUN</option>
+    <option>STOP</option>
+    <option>CONNECTION_LOST</option>
+</select>
+<br><br>
+
+<label>Новый статус:</label>
+<select id="newState">
+    <option>RUN</option>
+    <option>STOP</option>
+    <option>CONNECTION_LOST</option>
+</select>
+<br><br>
+
+<button onclick="sendEvent()">Отправить</button>
+
+<script>
+    function sendEvent() {
+
+        fetch('/api/machines/status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                machineId: document.getElementById('machineId').value,
+                stamp: new Date().toISOString(),
+                prevState: document.getElementById('prevState').value,
+                newState: document.getElementById('newState').value
+            })
+        })
+        .then(r => r.json())
+        .then(data => alert("Событие отправлено"));
+    }
+</script>
+</body>
+</html>
+</file>
+
+<file path="src/test/java/com/example/demo/AdminServiceTest.java">
+package com.example.demo;
+
+import com.example.demo.entity.Admin;
+import com.example.demo.repo.AdminRepository;
+import com.example.demo.service.AdminService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class AdminServiceTest {
+
+    @Mock
+    private AdminRepository adminRepository;
+
+    @InjectMocks
+    private AdminService adminService;
+
+    // isAdmin возвращает true для зарегистрированного администратора
+    @Test
+    void shouldReturnTrueForExistingAdmin() {
+        when(adminRepository.existsByChatId(100L)).thenReturn(true);
+
+        assertTrue(adminService.isAdmin(100L));
+    }
+
+    // isAdmin возвращает false для незарегистрированного пользователя
+    @Test
+    void shouldReturnFalseForNonAdmin() {
+        when(adminRepository.existsByChatId(999L)).thenReturn(false);
+
+        assertFalse(adminService.isAdmin(999L));
+    }
+
+    // isAdmin возвращает false при null chatId (защита от NPE)
+    @Test
+    void shouldReturnFalseForNullChatId() {
+        assertFalse(adminService.isAdmin(null));
+        verify(adminRepository, never()).existsByChatId(any());
+    }
+
+    // addAdmin сохраняет нового администратора
+    @Test
+    void shouldAddNewAdmin() {
+        when(adminRepository.existsByChatId(200L)).thenReturn(false);
+
+        adminService.addAdmin(200L);
+
+        verify(adminRepository).save(any(Admin.class));
+    }
+
+    // addAdmin не создаёт дубликат, если администратор уже существует
+    @Test
+    void shouldNotAddDuplicateAdmin() {
+        when(adminRepository.existsByChatId(100L)).thenReturn(true);
+
+        adminService.addAdmin(100L);
+
+        verify(adminRepository, never()).save(any());
+    }
+
+    // removeAdmin удаляет существующего администратора
+    @Test
+    void shouldRemoveExistingAdmin() {
+        Admin admin = new Admin(100L);
+        when(adminRepository.findByChatId(100L)).thenReturn(Optional.of(admin));
+
+        adminService.removeAdmin(100L);
+
+        verify(adminRepository).delete(admin);
+    }
+
+    // removeAdmin ничего не делает, если администратор не найден
+    @Test
+    void shouldDoNothingWhenRemovingNonExistentAdmin() {
+        when(adminRepository.findByChatId(999L)).thenReturn(Optional.empty());
+
+        adminService.removeAdmin(999L);
+
+        verify(adminRepository, never()).delete(any());
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/demo/DemoBotTelegaApplicationTests.java">
+package com.example.demo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class DemoBotTelegaApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+</file>
+
+<file path="src/test/java/com/example/demo/MachineEventServiceTest.java">
+package com.example.demo;
+
+import com.example.demo.bot.MachineBot;
+import com.example.demo.entity.MachineSubscription;
+import com.example.demo.entity.Subscriber;
+import com.example.demo.machine.MachineStatus;
+import com.example.demo.machine.MachineStatusChangeEvent;
+import com.example.demo.repo.MachineSubscriptionRepository;
+import com.example.demo.repo.SubscriberRepository;
+import com.example.demo.service.EmailNotificationService;
+import com.example.demo.service.MachineEventService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class MachineEventServiceTest {
+
+    @Mock
+    private MachineSubscriptionRepository subscriptionRepository;
+
+    @Mock
+    private SubscriberRepository subscriberRepository;
+
+    @Mock
+    private MachineBot machineBot;
+
+    @Mock
+    private EmailNotificationService emailNotificationService;
+
+    @InjectMocks
+    private MachineEventService machineEventService;
+
+
+
+
+    @Test
+    void shouldSendEmailToEachSubscriber() {
+        MachineSubscription sub = new MachineSubscription(1L, 10L, "MACHINE-001", LocalDateTime.now());
+        Subscriber subscriber = new Subscriber(10L, 1001L, "user1", LocalDateTime.now());
+
+        MachineStatusChangeEvent event = new MachineStatusChangeEvent(
+                "MACHINE-001", Instant.now(), MachineStatus.STOP, MachineStatus.RUN
+        );
+
+        when(subscriptionRepository.findByMachineId("MACHINE-001")).thenReturn(List.of(sub));
+        when(subscriberRepository.findById(10L)).thenReturn(Optional.of(subscriber));
+
+        machineEventService.process(event);
+        verify(emailNotificationService).sendNotification(subscriber, event);
+    }
+
+
+}
+</file>
+
+<file path="src/test/java/com/example/demo/MachineServiceTest.java">
+package com.example.demo;
+
+import com.example.demo.entity.Machine;
+import com.example.demo.repo.MachineRepository;
+import com.example.demo.service.MachineEventService;
+import com.example.demo.service.MachineService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class MachineServiceTest {
+
+    @Mock
+    private MachineRepository machineRepository;
+
+    @InjectMocks
+    private MachineService machineService;
+
+    @Test
+    void shouldReturnAllMachineIds() {
+        when(machineRepository.findAll()).thenReturn(List.of(
+                new Machine("MACHINE-001"),
+                new Machine("MACHINE-002")
+        ));
+
+        List<String> result = machineService.getAllMachineIds();
+
+        assertEquals(2, result.size());
+        assertTrue(result.contains("MACHINE-001"));
+        assertTrue(result.contains("MACHINE-002"));
+    }
+
+    @Test
+    void shouldAddMachineIfNotExists() {
+        when(machineRepository.existsByMachineId("MACHINE-003")).thenReturn(false);
+
+        machineService.addMachine("MACHINE-003");
+
+        verify(machineRepository).save(any(Machine.class));
+    }
+
+    @Test
+    void shouldNotAddDuplicateMachine() {
+        when(machineRepository.existsByMachineId("MACHINE-001")).thenReturn(true);
+
+        machineService.addMachine("MACHINE-001");
+
+        verify(machineRepository, never()).save(any());
+    }
+
+    @Test
+    void shouldDeleteMachineAndReturnTrue() {
+        Machine machine = new Machine("MACHINE-001");
+        when(machineRepository.findByMachineId("MACHINE-001")).thenReturn(Optional.of(machine));
+
+        boolean result = machineService.deleteMachine("MACHINE-001");
+
+        assertTrue(result);
+        verify(machineRepository).delete(machine);
+    }
+
+    @Test
+    void shouldReturnFalseWhenMachineNotFound() {
+        when(machineRepository.findByMachineId("UNKNOWN")).thenReturn(Optional.empty());
+
+        boolean result = machineService.deleteMachine("UNKNOWN");
+
+        assertFalse(result);
+        verify(machineRepository, never()).delete(any());
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/demo/SubscriberServiceTest.java">
+package com.example.demo;
+
+import com.example.demo.entity.Subscriber;
+import com.example.demo.repo.SubscriberRepository;
+import com.example.demo.service.SubscriberService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class SubscriberServiceTest {
+
+    @Mock
+    private SubscriberRepository repo;
+
+    @InjectMocks
+    private SubscriberService subscriberService;
+
+    // register возвращает существующего подписчика, не создавая нового
+    @Test
+    void shouldReturnExistingSubscriber() {
+        Subscriber existing = new Subscriber(1L, 123L, "andrey", LocalDateTime.now());
+        when(repo.findByChatId(123L)).thenReturn(Optional.of(existing));
+
+        Subscriber result = subscriberService.register(123L, "new_username", "ru");
+
+        assertEquals(1L, result.getId());
+        assertEquals("andrey", result.getUsername());
+        verify(repo, never()).save(any());
+    }
+
+    // register создаёт нового подписчика, если его нет в БД
+    @Test
+    void shouldRegisterNewSubscriber() {
+        Subscriber saved = new Subscriber(10L, 555L, "vasya", LocalDateTime.now());
+        when(repo.findByChatId(555L)).thenReturn(Optional.empty());
+        when(repo.save(any())).thenReturn(saved);
+
+        Subscriber result = subscriberService.register(555L, "vasya", "ru");
+        assertNotNull(result);
+        assertEquals(555L, result.getChatId());
+        verify(repo).save(any(Subscriber.class));
+    }
+
+    // getByChatId возвращает подписчика по chatId
+    @Test
+    void shouldGetSubscriberByChatId() {
+        Subscriber sub = new Subscriber(1L, 123L, "andrey", LocalDateTime.now());
+        when(repo.findByChatId(123L)).thenReturn(Optional.of(sub));
+
+        Subscriber result = subscriberService.getByChatId(123L);
+
+        assertNotNull(result);
+        assertEquals(123L, result.getChatId());
+    }
+
+    // getByChatId возвращает null, если подписчик не найден
+    @Test
+    void shouldReturnNullWhenSubscriberNotFound() {
+        when(repo.findByChatId(999L)).thenReturn(Optional.empty());
+
+        Subscriber result = subscriberService.getByChatId(999L);
+
+        assertNull(result);
+    }
+
+    // exists возвращает true для зарегистрированного chatId
+    @Test
+    void shouldReturnTrueIfSubscriberExists() {
+        Subscriber sub = new Subscriber(1L, 123L, "andrey", LocalDateTime.now());
+        when(repo.findByChatId(123L)).thenReturn(Optional.of(sub));
+
+        assertTrue(subscriberService.exists(123L));
+    }
+
+    // exists возвращает false для незарегистрированного chatId
+    @Test
+    void shouldReturnFalseIfSubscriberDoesNotExist() {
+        when(repo.findByChatId(999L)).thenReturn(Optional.empty());
+
+        assertFalse(subscriberService.exists(999L));
+    }
+
+    // setEmail сохраняет email подписчика
+    @Test
+    void shouldSetEmailForSubscriber() {
+        Subscriber sub = new Subscriber(1L, 123L, "andrey", LocalDateTime.now());
+        when(repo.findByChatId(123L)).thenReturn(Optional.of(sub));
+
+        subscriberService.setEmail(123L, "andrey@example.com");
+
+        assertEquals("andrey@example.com", sub.getEmail());
+        verify(repo).save(sub);
+    }
+
+    // setEmail ничего не делает, если подписчик не найден
+    @Test
+    void shouldDoNothingOnSetEmailIfSubscriberNotFound() {
+        when(repo.findByChatId(999L)).thenReturn(Optional.empty());
+
+        subscriberService.setEmail(999L, "nobody@example.com");
+
+        verify(repo, never()).save(any());
+    }
+}
+</file>
+
+<file path="src/test/java/com/example/demo/SubscriptionServiceTest.java">
+package com.example.demo;
+
+import com.example.demo.entity.MachineSubscription;
+import com.example.demo.repo.MachineSubscriptionRepository;
+import com.example.demo.service.SubscriptionService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class SubscriptionServiceTest {
+
+    @Mock
+    private MachineSubscriptionRepository repo;
+
+    @InjectMocks
+    private SubscriptionService service;
+
+    // subscribe создаёт запись, если подписки ещё не существует
+    @Test
+    void shouldCreateSubscriptionIfNotExists() {
+        when(repo.existsBySubscriberIdAndMachineId(1L, "MACHINE-001")).thenReturn(false);
+
+        service.subscribe(1L, "MACHINE-001");
+
+        verify(repo).save(any(MachineSubscription.class));
+    }
+
+    // subscribe не создаёт дубликат, если подписка уже есть
+    @Test
+    void shouldNotCreateDuplicateSubscription() {
+        when(repo.existsBySubscriberIdAndMachineId(1L, "MACHINE-001")).thenReturn(true);
+
+        service.subscribe(1L, "MACHINE-001");
+
+        verify(repo, never()).save(any());
+    }
+
+    // unsubscribe вызывает удаление записи из репозитория
+    @Test
+    void shouldCallDeleteOnUnsubscribe() {
+        service.unsubscribe(1L, "MACHINE-001");
+
+        verify(repo).deleteBySubscriberIdAndMachineId(1L, "MACHINE-001");
+    }
+
+    // listMachines возвращает список id станков для подписчика
+    @Test
+    void shouldReturnMachineListForSubscriber() {
+        MachineSubscription sub1 = new MachineSubscription(1L, 10L, "MACHINE-001", LocalDateTime.now());
+        MachineSubscription sub2 = new MachineSubscription(2L, 10L, "MACHINE-002", LocalDateTime.now());
+        when(repo.findBySubscriberId(10L)).thenReturn(List.of(sub1, sub2));
+
+        List<String> result = service.listMachines(10L);
+
+        assertEquals(2, result.size());
+        assertTrue(result.contains("MACHINE-001"));
+        assertTrue(result.contains("MACHINE-002"));
+    }
+
+    // listMachines возвращает пустой список, если подписок нет
+    @Test
+    void shouldReturnEmptyListWhenNoSubscriptions() {
+        when(repo.findBySubscriberId(99L)).thenReturn(List.of());
+
+        List<String> result = service.listMachines(99L);
+
+        assertTrue(result.isEmpty());
+    }
+}
+</file>
+
+</files>

@@ -1,11 +1,7 @@
 package com.example.demo.bot;
 
 import com.example.demo.handler.*;
-import com.example.demo.service.AdminService;
-import com.example.demo.service.MachineEventService;
-import com.example.demo.service.MachineService;
-import com.example.demo.service.SubscriberService;
-import com.example.demo.service.SubscriptionService;
+import com.example.demo.service.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,6 +12,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.*;
 
@@ -33,6 +33,7 @@ public class MachineBot extends TelegramLongPollingBot {
     private final MachineService machineService;
     private final AdminService adminService;
     private final MachineEventService machineEventService;
+    private final LocaleService localeService;
 
     private final Map<Long, String> adminState = new HashMap<>();
 
@@ -45,12 +46,14 @@ public class MachineBot extends TelegramLongPollingBot {
                       SubscriptionService subscriptionService,
                       MachineService machineService,
                       AdminService adminService,
-                      MachineEventService machineEventService) {
+                      MachineEventService machineEventService,
+                      LocaleService localeService) {
         this.subscriberService = subscriberService;
         this.subscriptionService = subscriptionService;
         this.machineService = machineService;
         this.adminService = adminService;
         this.machineEventService = machineEventService;
+        this.localeService = localeService;
     }
 
     // === Инициализация хендлеров ===
@@ -69,6 +72,9 @@ public class MachineBot extends TelegramLongPollingBot {
 
         adminEventFlowHandler = new AdminEventFlowHandler(this, machineService, machineEventService);
         prefixHandlers.put("EVENT_", adminEventFlowHandler);
+
+        // ВОТ ЭТУ СТРОКУ ДОБАВИТЬ:
+        prefixHandlers.put("SETLANG_", new LanguageCallbackHandler(subscriberService, localeService, this));
     }
 
     // === Входящие обновления ===
@@ -82,6 +88,8 @@ public class MachineBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             handleMessage(update);
         }
+
+
     }
 
     // === Обработка callback-кнопок ===
@@ -90,7 +98,6 @@ public class MachineBot extends TelegramLongPollingBot {
         Long chatId = update.getCallbackQuery().getMessage().getChatId();
         Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
 
-        // Удаляем сообщение, на котором была нажата кнопка
         deleteMessage(chatId, messageId);
 
         CallbackHandler handler = exactHandlers.get(data);
@@ -106,7 +113,7 @@ public class MachineBot extends TelegramLongPollingBot {
             }
         }
 
-        send(chatId, "Неизвестная команда");
+        send(chatId, "Unknown command");
     }
 
     // === Обработка текстовых сообщений ===
@@ -114,23 +121,30 @@ public class MachineBot extends TelegramLongPollingBot {
         String text = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
         String user = update.getMessage().getFrom().getUserName();
+        String langCode = update.getMessage().getFrom().getLanguageCode(); // "ru", "en", "nl" и т.д.
 
         if (text == null) return;
 
         if (text.equals("/start")) {
-            subscriberService.register(chatId, user);
-            sendMenu(chatId, "Добро пожаловать!");
+            subscriberService.register(chatId, user, langCode);
+            sendMenu(chatId, localeService.msg(chatId, "bot.welcome"));
+            return;
+        }
+
+        // ВОТ ЭТОТ БЛОК ДОБАВИТЬ:
+        if (text.equals("/lang") || text.equals("/language")) {
+            showLanguageMenu(chatId);
             return;
         }
 
         if (text.equals("/myid")) {
-            send(chatId, "Ваш chatId: " + chatId);
+            send(chatId, localeService.msg(chatId, "bot.your_chat_id", chatId));
             return;
         }
 
         if (text.equals("/admin")) {
             if (!isAdmin(chatId)) {
-                send(chatId, "Нет доступа!");
+                send(chatId, localeService.msg(chatId, "bot.access_denied"));
                 return;
             }
             sendAdminMenu(chatId);
@@ -149,14 +163,16 @@ public class MachineBot extends TelegramLongPollingBot {
             if (state.equals("WAIT_MACHINE_NAME")) {
                 machineService.addMachine(text);
                 adminState.remove(chatId);
-                send(chatId, "Станок добавлен: " + text);
+                send(chatId, localeService.msg(chatId, "bot.machine_added", text));
                 return;
             }
 
             if (state.equals("WAIT_DELETE_MACHINE_NAME")) {
                 boolean deleted = machineService.deleteMachine(text);
                 adminState.remove(chatId);
-                send(chatId, deleted ? "Станок удалён: " + text : "Станок не найден: " + text);
+                send(chatId, deleted
+                        ? localeService.msg(chatId, "bot.machine_deleted", text)
+                        : localeService.msg(chatId, "bot.machine_not_found", text));
                 return;
             }
         }
@@ -164,24 +180,24 @@ public class MachineBot extends TelegramLongPollingBot {
         if (text.startsWith("/subscribe")) {
             String[] parts = text.split(" ");
             if (parts.length < 2) {
-                send(chatId, "Использование:\n/subscribe MACHINE-001");
+                send(chatId, localeService.msg(chatId, "bot.subscribe_usage"));
                 return;
             }
             var sub = subscriberService.getByChatId(chatId);
             subscriptionService.subscribe(sub.getId(), parts[1]);
-            send(chatId, "Подписка оформлена: " + parts[1]);
+            send(chatId, localeService.msg(chatId, "bot.subscribed", parts[1]));
             return;
         }
 
         if (text.startsWith("/unsubscribe")) {
             String[] parts = text.split(" ");
             if (parts.length < 2) {
-                send(chatId, "Использование:\n/unsubscribe MACHINE-001");
+                send(chatId, localeService.msg(chatId, "bot.unsubscribe_usage"));
                 return;
             }
             var sub = subscriberService.getByChatId(chatId);
             subscriptionService.unsubscribe(sub.getId(), parts[1]);
-            send(chatId, "Отписка: " + parts[1]);
+            send(chatId, localeService.msg(chatId, "bot.unsubscribed", parts[1]));
             return;
         }
 
@@ -190,31 +206,31 @@ public class MachineBot extends TelegramLongPollingBot {
             var list = subscriptionService.listMachines(sub.getId());
 
             if (list.isEmpty()) {
-                send(chatId, "У вас нет подписок");
+                send(chatId, localeService.msg(chatId, "bot.no_subscriptions"));
                 return;
             }
 
-            StringBuilder sb = new StringBuilder("Ваши подписки:\n");
+            StringBuilder sb = new StringBuilder();
             for (String m : list) {
-                sb.append("• Станок №").append(m).append("\n");
+                sb.append(localeService.msg(chatId, "bot.machine_prefix", m)).append("\n");
             }
-            send(chatId, sb.toString());
+            send(chatId, localeService.msg(chatId, "bot.subscriptions_title") + "\n" + sb);
             return;
         }
 
         if (text.startsWith("/setemail")) {
             String[] parts = text.split(" ");
             if (parts.length < 2) {
-                send(chatId, "Использование:\n/setemail your@email.com");
+                send(chatId, localeService.msg(chatId, "bot.email_usage"));
                 return;
             }
             String email = parts[1];
             subscriberService.setEmail(chatId, email);
-            send(chatId, "Email сохранён: " + email + "\nТеперь уведомления о станках будут приходить на почту");
+            send(chatId, localeService.msg(chatId, "bot.email_saved", email));
         }
     }
 
-    // === Вспомогательные методы для хендлеров ===
+    // === Вспомогательные методы ===
 
     public Map<Long, String> getAdminState() {
         return adminState;
@@ -222,6 +238,10 @@ public class MachineBot extends TelegramLongPollingBot {
 
     public boolean isAdmin(Long chatId) {
         return adminService.isAdmin(chatId);
+    }
+
+    public LocaleService getLocaleService() {
+        return localeService;
     }
 
     public void send(Long chatId, String text) {
@@ -235,14 +255,13 @@ public class MachineBot extends TelegramLongPollingBot {
     private void deleteMessage(Long chatId, Integer messageId) {
         try {
             execute(new DeleteMessage(chatId.toString(), messageId));
-        }
-        catch (TelegramApiException e) {
-            System.err.println("Не удалось удалить сообщение: " + messageId + ": " + e.getMessage());
+        } catch (TelegramApiException e) {
+            System.err.println("Could not delete message " + messageId + ": " + e.getMessage());
         }
     }
 
     public void sendMainMenu(Long chatId) {
-        sendMenu(chatId, "Главное меню");
+        sendMenu(chatId, localeService.msg(chatId, "bot.welcome"));
     }
 
     public void sendWithKeyboard(Long chatId, String text, InlineKeyboardMarkup markup) {
@@ -265,7 +284,7 @@ public class MachineBot extends TelegramLongPollingBot {
         List<String> machines = machineService.getAllMachineIds();
 
         if (machines.isEmpty()) {
-            send(chatId, "Нет доступных машин!");
+            send(chatId, localeService.msg(chatId, "bot.no_machines"));
             return;
         }
 
@@ -273,8 +292,8 @@ public class MachineBot extends TelegramLongPollingBot {
         for (String m : machines) {
             rows.add(List.of(btn("📡 " + m, "SUB_" + m)));
         }
-        rows.add(List.of(btn("🔙 Назад", "BACK_TO_MAIN")));
-        sendWithKeyboard(chatId, "Выберите станок:", rows);
+        rows.add(List.of(btn(localeService.msg(chatId, "bot.back"), "BACK_TO_MAIN")));
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.machines_title"), rows);
     }
 
     public void showSubscriptions(Long chatId) {
@@ -282,7 +301,7 @@ public class MachineBot extends TelegramLongPollingBot {
         var list = subscriptionService.listMachines(sub.getId());
 
         if (list.isEmpty()) {
-            send(chatId, "Нет подписок");
+            send(chatId, localeService.msg(chatId, "bot.no_subscriptions"));
             return;
         }
 
@@ -293,28 +312,39 @@ public class MachineBot extends TelegramLongPollingBot {
                     btn("❌", "UNSUB_" + m)
             ));
         }
-        rows.add(List.of(btn("🔙 Назад", "BACK_TO_MAIN")));
-        sendWithKeyboard(chatId, "Ваши подписки:", rows);
+        rows.add(List.of(btn(localeService.msg(chatId, "bot.back"), "BACK_TO_MAIN")));
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.subscriptions_title"), rows);
     }
 
     public void sendAdminMenu(Long chatId) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         markup.setKeyboard(List.of(
-                List.of(btn("Добавить станок", "ADMIN_ADD_MACHINE")),
-                List.of(btn("Удалить станок", "ADMIN_DELETE_MACHINE")),
-                List.of(btn("📤 Отправить событие", "EVENT_OPEN"))
+                List.of(btn(localeService.msg(chatId, "bot.admin_add_machine"), "ADMIN_ADD_MACHINE")),
+                List.of(btn(localeService.msg(chatId, "bot.admin_delete_machine"), "ADMIN_DELETE_MACHINE")),
+                List.of(btn(localeService.msg(chatId, "bot.admin_send_event"), "EVENT_OPEN"))
         ));
-        sendWithKeyboard(chatId, "Админ-панель", markup);
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.admin_panel"), markup);
     }
 
     public void sendMenu(Long chatId, String text) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         markup.setKeyboard(List.of(
-                List.of(btn("Подписаться", "MENU_SUBSCRIBE")),
-                List.of(btn("Мои подписки", "MENU_LIST")),
-                List.of(btn("Помощь", "MENU_HELP"))
+                List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),
+                List.of(btn(localeService.msg(chatId, "bot.menu.my_subscriptions"), "MENU_LIST")),
+                List.of(btn(localeService.msg(chatId, "bot.menu.help"), "MENU_HELP"))
         ));
         sendWithKeyboard(chatId, text, markup);
+    }
+
+    public void showLanguageMenu(Long chatId) {
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+
+        rows.add(List.of(btn("🇷🇺 Русский", "SETLANG_ru")));
+        rows.add(List.of(btn("🇬🇧 English", "SETLANG_en")));
+        rows.add(List.of(btn("🇳🇱 Nederlands", "SETLANG_nl")));
+        rows.add(List.of(btn(localeService.msg(chatId, "bot.back"), "BACK_TO_MAIN")));
+
+        sendWithKeyboard(chatId, localeService.msg(chatId, "bot.choose_language"), rows);
     }
 
     public InlineKeyboardButton btn(String text, String data) {
@@ -324,15 +354,9 @@ public class MachineBot extends TelegramLongPollingBot {
         return b;
     }
 
-    // === Методы TelegramLongPollingBot ===
+    @Override
+    public String getBotUsername() { return username; }
 
     @Override
-    public String getBotUsername() {
-        return username;
-    }
-
-    @Override
-    public String getBotToken() {
-        return token;
-    }
+    public String getBotToken() { return token; }
 }

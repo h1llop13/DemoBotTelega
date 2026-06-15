@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd - привел код в порядок">
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/entity/Subscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/SubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriberServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriberServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriptionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/SubscriptionServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriberServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriberServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriptionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/SubscriptionServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,24 +60,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.demo [install].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot Application.DemoBotTelegaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DemoBotTelegaaa&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AdminServiceTest.executor": "Run",
+    "JUnit.MachineServiceTest.executor": "Run",
+    "JUnit.SubscriberServiceTest.executor": "Run",
+    "JUnit.SubscriptionServiceTest.executor": "Run",
+    "Maven.demo [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot Application.DemoBotTelegaApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/DemoBotTelegaaa",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot Application.DemoBotTelegaApplication">
     <configuration name="DemoBotTelegaApplication" type="AmplicodeSpringBootApplication" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demo.DemoBotTelegaApplication" />
       <module name="demo" />
@@ -81,6 +89,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AdminServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.AdminServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MachineServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.MachineServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriberServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.SubscriberServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriptionServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.SubscriptionServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SubscriptionServiceTest" />
+        <item itemvalue="JUnit.SubscriberServiceTest" />
+        <item itemvalue="JUnit.AdminServiceTest" />
+        <item itemvalue="JUnit.MachineServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -122,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781208291829</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)">
+      <option name="closed" value="true" />
+      <created>1781216291102</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1781216291102</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,6 +224,7 @@
     <MESSAGE value="f" />
     <MESSAGE value="aaa" />
     <MESSAGE value="upd - привел код в порядок" />
-    <option name="LAST_COMMIT_MESSAGE" value="upd - привел код в порядок" />
+    <MESSAGE value="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)" />
   </component>
 </project>
