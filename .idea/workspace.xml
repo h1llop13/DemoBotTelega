@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang">
+    <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/repomix-output.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/repomix-output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781504166110</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="upd">
+      <option name="closed" value="true" />
+      <created>1781540307699</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781540307699</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,6 +237,7 @@
     <MESSAGE value="upd - привел код в порядок" />
     <MESSAGE value="upd:&#10; - добавлено удаление предыдущего сообщения при нажатии на inline-кнопку (deleteMessage + вызов в handleCallback)&#10;- Добавлен хендлер для возврата в главное меню (+ inline-кнопка &quot;Назад&quot;)" />
     <MESSAGE value="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang" />
-    <option name="LAST_COMMIT_MESSAGE" value="upd:&#10;- Добавлена мультиязчность (Русский, Английский, Нидерландский) - /lang" />
+    <MESSAGE value="upd" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd" />
   </component>
 </project>

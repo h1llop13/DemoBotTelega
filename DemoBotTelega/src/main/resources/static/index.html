@@ -2,52 +2,293 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Отправка событий станков</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Machine Monitor</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--tg-theme-bg-color,#f2f2f7);color:var(--tg-theme-text-color,#111);padding-bottom:80px}
+        .header{background:var(--tg-theme-button-color,#5B6EAE);padding:env(safe-area-inset-top,0) 1.25rem 1rem;padding-top:calc(env(safe-area-inset-top,0) + 1rem)}
+        .header-sub{font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+        .header-title{font-size:22px;font-weight:500;color:#fff}
+        .header-user{font-size:13px;color:rgba(255,255,255,0.75);margin-top:4px}
+        .tab-bar{position:fixed;bottom:0;left:0;right:0;background:var(--tg-theme-secondary-bg-color,#fff);border-top:.5px solid rgba(0,0,0,0.1);display:flex;padding-bottom:env(safe-area-inset-bottom,0);z-index:100}
+        .tab{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;cursor:pointer;gap:3px;color:var(--tg-theme-hint-color,#999);font-size:11px}
+        .tab.active{color:var(--tg-theme-button-color,#5B6EAE)}
+        .tab i{font-size:22px}
+        .screen{display:none}
+        .screen.active{display:block}
+        .section-label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--tg-theme-hint-color,#888);padding:.9rem 1rem .35rem}
+        .card{background:var(--tg-theme-secondary-bg-color,#fff);border-radius:16px;margin:0 1rem;overflow:hidden}
+        .machine-row{display:flex;align-items:center;padding:.9rem 1rem;gap:12px;border-bottom:.5px solid rgba(0,0,0,0.06)}
+        .machine-row:last-child{border-bottom:none}
+        .machine-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+        .icon-run{background:rgba(16,185,129,.12);color:#10b981}
+        .icon-stop{background:rgba(239,68,68,.12);color:#ef4444}
+        .icon-conn{background:rgba(251,191,36,.12);color:#f59e0b}
+        .icon-neutral{background:rgba(91,110,174,.1);color:#5B6EAE}
+        .machine-info{flex:1;min-width:0}
+        .machine-id{font-size:15px;font-weight:500}
+        .machine-status{font-size:12px;margin-top:2px}
+        .status-run{color:#10b981}
+        .status-stop{color:#ef4444}
+        .status-conn{color:#f59e0b}
+        .status-unknown{color:var(--tg-theme-hint-color,#888)}
+        .btn-sub{border:none;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:opacity .15s}
+        .btn-sub.subscribed{background:rgba(239,68,68,.1);color:#ef4444}
+        .btn-sub.unsubscribed{background:var(--tg-theme-button-color,#5B6EAE);color:#fff}
+        .empty{text-align:center;padding:3rem 2rem;color:var(--tg-theme-hint-color,#aaa)}
+        .empty i{font-size:48px;margin-bottom:.75rem;display:block;opacity:.4}
+        .empty p{font-size:15px}
+        .profile-avatar{width:72px;height:72px;border-radius:50%;background:var(--tg-theme-button-color,#5B6EAE);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:500;color:#fff;margin:0 auto 1rem}
+        .profile-name{text-align:center;font-size:18px;font-weight:500;margin-bottom:4px}
+        .profile-id{text-align:center;font-size:13px;color:var(--tg-theme-hint-color,#888);margin-bottom:1.5rem}
+        .info-row{display:flex;align-items:center;padding:.85rem 1rem;gap:12px;border-bottom:.5px solid rgba(0,0,0,0.06)}
+        .info-row:last-child{border-bottom:none}
+        .info-icon{font-size:20px;color:var(--tg-theme-button-color,#5B6EAE);width:24px;text-align:center}
+        .info-label{font-size:12px;color:var(--tg-theme-hint-color,#888)}
+        .info-value{font-size:15px;font-weight:500;margin-top:1px}
+        .email-row{display:flex;align-items:center;gap:8px}
+        .email-input{flex:1;background:transparent;border:none;outline:none;font-size:15px;font-weight:500;color:var(--tg-theme-text-color,#111);font-family:inherit}
+        .email-save{border:none;background:var(--tg-theme-button-color,#5B6EAE);color:#fff;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+        .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 1rem}
+        .stat-card{background:var(--tg-theme-secondary-bg-color,#fff);border-radius:14px;padding:1rem;text-align:center}
+        .stat-num{font-size:28px;font-weight:500}
+        .stat-label{font-size:12px;color:var(--tg-theme-hint-color,#888);margin-top:2px}
+        .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;border-radius:12px;padding:9px 18px;font-size:14px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;z-index:200}
+        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        .loader{text-align:center;padding:2rem;color:var(--tg-theme-hint-color,#aaa)}
+        .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+    </style>
 </head>
 <body>
 
-<h2>Отправка событий станков</h2>
+<div class="header">
+    <div class="header-sub">Machine Monitor</div>
+    <div class="header-title" id="headerTitle">Мои подписки</div>
+    <div class="header-user" id="headerUser"></div>
+</div>
 
-<label>Machine ID</label>
-<input id="machineId" value="MACHINE-001">
-<br><br>
+<!-- Экран 1: Мои подписки -->
+<div class="screen active" id="screen-subs">
+    <div class="section-label">Подписки</div>
+    <div class="card" id="mySubsList"><div class="loader"><i class="ti ti-loader"></i></div></div>
+</div>
 
-<label>Предыдущий статус:</label>
-<select id="prevState">
-    <option>RUN</option>
-    <option>STOP</option>
-    <option>CONNECTION_LOST</option>
-</select>
-<br><br>
+<!-- Экран 2: Все станки -->
+<div class="screen" id="screen-all">
+    <div class="section-label">Все станки</div>
+    <div class="card" id="allMachinesList"><div class="loader"><i class="ti ti-loader"></i></div></div>
+</div>
 
-<label>Новый статус:</label>
-<select id="newState">
-    <option>RUN</option>
-    <option>STOP</option>
-    <option>CONNECTION_LOST</option>
-</select>
-<br><br>
+<!-- Экран 3: Профиль -->
+<div class="screen" id="screen-profile">
+    <div style="padding:1.5rem 1rem 0">
+        <div class="profile-avatar" id="profileAvatar">?</div>
+        <div class="profile-name" id="profileName"></div>
+        <div class="profile-id" id="profileIdText"></div>
+    </div>
+    <div class="stats-grid" id="statsGrid" style="margin-bottom:.75rem">
+        <div class="stat-card"><div class="stat-num" id="statSubs">—</div><div class="stat-label">подписок</div></div>
+        <div class="stat-card"><div class="stat-num" id="statAll">—</div><div class="stat-label">станков всего</div></div>
+    </div>
+    <div class="section-label">Данные</div>
+    <div class="card">
+        <div class="info-row">
+            <i class="ti ti-id info-icon"></i>
+            <div><div class="info-label">Telegram ID</div><div class="info-value" id="profileTgId">—</div></div>
+        </div>
+        <div class="info-row">
+            <i class="ti ti-at info-icon"></i>
+            <div><div class="info-label">Username</div><div class="info-value" id="profileUsername">—</div></div>
+        </div>
+        <div class="info-row">
+            <i class="ti ti-mail info-icon"></i>
+            <div style="flex:1">
+                <div class="info-label">Email для уведомлений</div>
+                <div class="email-row">
+                    <input class="email-input" id="emailInput" placeholder="не указан" />
+                    <button class="email-save" onclick="saveEmail()">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<button onclick="sendEvent()">Отправить</button>
+<!-- Таб-бар -->
+<div class="tab-bar">
+    <div class="tab active" onclick="switchTab('subs',this)" id="tab-subs">
+        <i class="ti ti-bell"></i>
+        <span>Подписки</span>
+    </div>
+    <div class="tab" onclick="switchTab('all',this)" id="tab-all">
+        <i class="ti ti-cpu"></i>
+        <span>Станки</span>
+    </div>
+    <div class="tab" onclick="switchTab('profile',this)" id="tab-profile">
+        <i class="ti ti-user"></i>
+        <span>Профиль</span>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-    function sendEvent() {
+    const tg = window.Telegram.WebApp;
+    tg.ready(); tg.expand();
 
-        fetch('/api/machines/status', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                machineId: document.getElementById('machineId').value,
-                stamp: new Date().toISOString(),
-                prevState: document.getElementById('prevState').value,
-                newState: document.getElementById('newState').value
-            })
-        })
-        .then(r => r.json())
-        .then(data => alert("Событие отправлено"));
+    const initData = tg.initData || '';
+    const user = tg.initDataUnsafe?.user || {};
+    const headers = { 'Content-Type': 'application/json', 'X-Init-Data': initData };
+
+    // Заголовок
+    document.getElementById('headerUser').textContent =
+      user.first_name ? user.first_name + (user.username ? ' · @' + user.username : '') : '';
+
+    // Профиль — аватар инициалы
+    const initials = (user.first_name || '?')[0].toUpperCase();
+    document.getElementById('profileAvatar').textContent = initials;
+    document.getElementById('profileName').textContent = user.first_name || '';
+    document.getElementById('profileIdText').textContent = user.username ? '@' + user.username : '';
+    document.getElementById('profileTgId').textContent = user.id || '—';
+    document.getElementById('profileUsername').textContent = user.username ? '@' + user.username : '—';
+
+    // Состояние
+    let allMachines = [];
+    let mySubIds = new Set();
+
+    // Таб-бар
+    const tabTitles = { subs: 'Мои подписки', all: 'Все станки', profile: 'Профиль' };
+    function switchTab(name, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('screen-' + name).classList.add('active');
+      document.getElementById('headerTitle').textContent = tabTitles[name];
     }
+
+    // Статус
+    function statusClass(s) {
+      if (!s) return 'status-unknown';
+      if (s === 'RUN') return 'status-run';
+      if (s === 'STOP') return 'status-stop';
+      return 'status-conn';
+    }
+    function statusLabel(s) {
+      if (!s) return 'Неизвестно';
+      if (s === 'RUN') return 'Работает';
+      if (s === 'STOP') return 'Остановлен';
+      return 'Нет связи';
+    }
+    function iconClass(s) {
+      if (s === 'RUN') return 'icon-run';
+      if (s === 'STOP') return 'icon-stop';
+      if (s === 'CONNECTION_LOST') return 'icon-conn';
+      return 'icon-neutral';
+    }
+    function iconName(s) {
+      if (s === 'RUN') return 'ti-player-play';
+      if (s === 'STOP') return 'ti-player-pause';
+      if (s === 'CONNECTION_LOST') return 'ti-wifi-off';
+      return 'ti-cpu';
+    }
+
+    // Toast
+    function toast(msg, ok) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = ok !== false ? '#10b981' : '#ef4444';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Загрузка данных
+    function load() {
+      fetch('/api/webapp/machines', { headers })
+        .then(r => r.json())
+        .then(data => {
+          allMachines = data;
+          mySubIds = new Set(data.filter(m => m.subscribed).map(m => m.machineId));
+          renderMySubs();
+          renderAllMachines();
+          document.getElementById('statSubs').textContent = mySubIds.size;
+          document.getElementById('statAll').textContent = allMachines.length;
+        })
+        .catch(() => toast('Ошибка загрузки', false));
+
+      fetch('/api/webapp/me', { headers })
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+          if (data?.email) document.getElementById('emailInput').value = data.email;
+        });
+    }
+
+    function renderMySubs() {
+      const el = document.getElementById('mySubsList');
+      const subs = allMachines.filter(m => m.subscribed);
+      if (subs.length === 0) {
+        el.innerHTML = '<div class="empty"><i class="ti ti-bell-off"></i><p>Нет подписок.<br>Перейди во вкладку «Станки»</p></div>';
+        return;
+      }
+      el.innerHTML = subs.map(m => machineRow(m, true)).join('');
+    }
+
+    function renderAllMachines() {
+      const el = document.getElementById('allMachinesList');
+      if (allMachines.length === 0) {
+        el.innerHTML = '<div class="empty"><i class="ti ti-cpu-off"></i><p>Станки не найдены</p></div>';
+        return;
+      }
+      el.innerHTML = allMachines.map(m => machineRow(m, false)).join('');
+    }
+
+    function machineRow(m, compact) {
+      const subbed = mySubIds.has(m.machineId);
+      const btnClass = subbed ? 'subscribed' : 'unsubscribed';
+      const btnText = subbed ? 'Отписаться' : 'Подписаться';
+      return `<div class="machine-row" id="row-${m.machineId}">
+        <div class="machine-icon ${iconClass(null)}"><i class="ti ${iconName(null)}"></i></div>
+        <div class="machine-info">
+          <div class="machine-id">${m.machineId}</div>
+          <div class="machine-status ${statusClass(null)}">${statusLabel(null)}</div>
+        </div>
+        <button class="btn-sub ${btnClass}" onclick="toggleSub('${m.machineId}', this)">${btnText}</button>
+      </div>`;
+    }
+
+    function toggleSub(machineId, btn) {
+      const subbed = mySubIds.has(machineId);
+      const url = subbed ? `/api/webapp/unsubscribe/${machineId}` : `/api/webapp/subscribe/${machineId}`;
+      btn.disabled = true;
+      fetch(url, { method: 'POST', headers })
+        .then(r => {
+          if (!r.ok) throw new Error();
+          if (subbed) {
+            mySubIds.delete(machineId);
+            toast('Отписались от ' + machineId);
+            allMachines = allMachines.map(m => m.machineId === machineId ? {...m, subscribed: false} : m);
+          } else {
+            mySubIds.add(machineId);
+            toast('Подписались на ' + machineId);
+            allMachines = allMachines.map(m => m.machineId === machineId ? {...m, subscribed: true} : m);
+          }
+          document.getElementById('statSubs').textContent = mySubIds.size;
+          renderMySubs();
+          renderAllMachines();
+        })
+        .catch(() => { toast('Ошибка', false); btn.disabled = false; });
+    }
+
+    function saveEmail() {
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email) return;
+      fetch('/api/webapp/set-email', { method: 'POST', headers, body: JSON.stringify({ email }) })
+        .then(r => { if (!r.ok) throw new Error(); toast('Email сохранён'); })
+        .catch(() => toast('Ошибка сохранения', false));
+    }
+
+    load();
 </script>
 </body>
 </html>

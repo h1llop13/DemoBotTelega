@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -328,11 +329,17 @@ public class MachineBot extends TelegramLongPollingBot {
 
     public void sendMenu(Long chatId, String text) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        InlineKeyboardButton webAppBtn = new InlineKeyboardButton();
+        webAppBtn.setText("Открыть mini App");
+        webAppBtn.setWebApp(new WebAppInfo("https://aside-dean-handheld-pixels.trycloudflare.com"));
+
         markup.setKeyboard(List.of(
                 List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),
                 List.of(btn(localeService.msg(chatId, "bot.menu.my_subscriptions"), "MENU_LIST")),
-                List.of(btn(localeService.msg(chatId, "bot.menu.help"), "MENU_HELP"))
+                List.of(btn(localeService.msg(chatId, "bot.menu.help"), "MENU_HELP")),
+                List.of(webAppBtn)
         ));
+
         sendWithKeyboard(chatId, text, markup);
     }
 
