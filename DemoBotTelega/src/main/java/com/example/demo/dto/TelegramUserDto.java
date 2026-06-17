@@ -11,13 +11,12 @@ public class TelegramUserDto {
         this.firstName = firstName;
     }
 
-    //геттеры
     public Long getTelegramId() {
-        return  telegramId;
+        return telegramId;
     }
 
     public String getUsername() {
-        return  username;
+        return username;
     }
 
     public String getFirstName() {

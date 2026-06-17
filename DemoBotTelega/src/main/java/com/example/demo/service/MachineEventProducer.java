@@ -4,7 +4,7 @@ import com.example.demo.machine.MachineStatusChangeEvent;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class MachineEventProducer {
 
     private static final String TOPIC = "machine-status-events";

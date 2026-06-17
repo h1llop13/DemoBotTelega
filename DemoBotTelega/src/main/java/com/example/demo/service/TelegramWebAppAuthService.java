@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.TelegramUserDto;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -8,14 +10,20 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class TelegramWebAppAuthService {
 
+    private static final long MAX_INIT_DATA_AGE_SECONDS = 86_400; // 24 часа
+
     @Value("${telegram.bot.token}")
     private String botToken;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public TelegramUserDto validate(String initData) {
         try {
@@ -37,15 +45,30 @@ public class TelegramWebAppAuthService {
             byte[] computed = mac.doFinal(dataCheckString.getBytes(StandardCharsets.UTF_8));
             String computedHash = bytesToHex(computed);
 
-            if (!computedHash.equals(hash)) {
+            // Constant-time сравнение хэшей
+            if (!MessageDigest.isEqual(
+                    computedHash.getBytes(StandardCharsets.UTF_8),
+                    hash.getBytes(StandardCharsets.UTF_8))) {
                 throw new RuntimeException("Invalid Telegram signature");
             }
 
-            // Парсим user из JSON вручную (без Jackson-зависимости)
+            // Проверка срока жизни подписи (защита от replay чужой initData)
+            String authDateStr = params.get("auth_date");
+            if (authDateStr == null) {
+                throw new RuntimeException("Missing auth_date");
+            }
+            long authDate = Long.parseLong(authDateStr);
+            long now = Instant.now().getEpochSecond();
+            if (now - authDate > MAX_INIT_DATA_AGE_SECONDS) {
+                throw new RuntimeException("initData expired");
+            }
+
+            // Парсим user через Jackson вместо ручного парсинга
             String userJson = params.get("user");
-            long id = extractLong(userJson, "id");
-            String username = extractString(userJson, "username");
-            String firstName = extractString(userJson, "first_name");
+            JsonNode userNode = objectMapper.readTree(userJson);
+            long id = userNode.get("id").asLong();
+            String username = userNode.hasNonNull("username") ? userNode.get("username").asText() : null;
+            String firstName = userNode.get("first_name").asText();
 
             return new TelegramUserDto(id, username, firstName);
         } catch (Exception e) {
@@ -76,22 +99,5 @@ public class TelegramWebAppAuthService {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) sb.append(String.format("%02x", b));
         return sb.toString();
-    }
-
-    private long extractLong(String json, String key) {
-        String pattern = "\"" + key + "\":";
-        int i = json.indexOf(pattern) + pattern.length();
-        int j = json.indexOf(',', i);
-        if (j == -1) j = json.indexOf('}', i);
-        return Long.parseLong(json.substring(i, j).trim());
-    }
-
-    private String extractString(String json, String key) {
-        String pattern = "\"" + key + "\":\"";
-        int i = json.indexOf(pattern);
-        if (i == -1) return null;
-        i += pattern.length();
-        int j = json.indexOf('"', i);
-        return json.substring(i, j);
     }
 }

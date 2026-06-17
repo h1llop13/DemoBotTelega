@@ -6,9 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="9260353a-bc45-4298-84ed-0fe4c64d6eac" name="Changes" comment="upd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/repomix-output.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/bot/MachineBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/config/KafkaConsumerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/config/KafkaProducerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/dto/TelegramUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/dto/TelegramUserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/handler/AdminEventFlowHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/handler/AdminEventFlowHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/MachineEventProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/TelegramWebAppAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/java/com/example/demo/service/TelegramWebAppAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/src/test/java/com/example/demo/AdminEventFlowHandlerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/bot/MachineBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/config/KafkaConsumerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/config/KafkaConsumerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/dto/TelegramUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/dto/TelegramUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/handler/AdminEventFlowHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/handler/AdminEventFlowHandler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/handler/AdminEventFlowHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/handler/AdminEventFlowHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventConsumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventProducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/MachineEventProducer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/TelegramWebAppAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DemoBotTelega/target/classes/com/example/demo/service/TelegramWebAppAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoBotTelega/target/test-classes/com/example/demo/AdminEventFlowHandlerTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +59,7 @@
     <option name="firstOpen" value="false" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -217,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781540307699</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="upd">
+      <option name="closed" value="true" />
+      <created>1781588972049</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781588972050</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

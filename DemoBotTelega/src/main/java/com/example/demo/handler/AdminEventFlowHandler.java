@@ -3,6 +3,7 @@ package com.example.demo.handler;
 import com.example.demo.bot.MachineBot;
 import com.example.demo.machine.MachineStatus;
 import com.example.demo.machine.MachineStatusChangeEvent;
+import com.example.demo.service.MachineEventProducer;
 import com.example.demo.service.MachineEventService;
 import com.example.demo.service.MachineService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -34,14 +35,14 @@ public class AdminEventFlowHandler implements CallbackHandler {
 
     private final MachineBot bot;
     private final MachineService machineService;
-    private final MachineEventService machineEventService;
+    private final MachineEventProducer machineEventProducer;
 
     public AdminEventFlowHandler(MachineBot bot,
                                  MachineService machineService,
-                                 MachineEventService machineEventService) {
+                                 MachineEventProducer machineEventProducer) {
         this.bot = bot;
         this.machineService = machineService;
-        this.machineEventService = machineEventService;
+        this.machineEventProducer = machineEventProducer;
     }
 
     @Override
@@ -158,7 +159,7 @@ public class AdminEventFlowHandler implements CallbackHandler {
                 newState
         );
 
-        machineEventService.process(event);
+        machineEventProducer.publish(event);
 
         bot.send(chatId,
                 "✅ Событие отправлено!\n" +

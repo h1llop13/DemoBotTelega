@@ -36,6 +36,8 @@ public class MachineBot extends TelegramLongPollingBot {
     private final MachineEventService machineEventService;
     private final LocaleService localeService;
 
+    private final MachineEventProducer machineEventProducer;
+
     private final Map<Long, String> adminState = new HashMap<>();
 
     private final Map<String, CallbackHandler> exactHandlers = new HashMap<>();
@@ -48,13 +50,15 @@ public class MachineBot extends TelegramLongPollingBot {
                       MachineService machineService,
                       AdminService adminService,
                       MachineEventService machineEventService,
-                      LocaleService localeService) {
+                      LocaleService localeService,
+                      MachineEventProducer machineEventProducer) {
         this.subscriberService = subscriberService;
         this.subscriptionService = subscriptionService;
         this.machineService = machineService;
         this.adminService = adminService;
         this.machineEventService = machineEventService;
         this.localeService = localeService;
+        this.machineEventProducer = machineEventProducer;
     }
 
     // === Инициализация хендлеров ===
@@ -71,7 +75,7 @@ public class MachineBot extends TelegramLongPollingBot {
         prefixHandlers.put("UNSUB_", new UnsubscriberCallbackHandler(subscriberService, subscriptionService, this));
         prefixHandlers.put("INFO_", new InfoCallbackHandler(this));
 
-        adminEventFlowHandler = new AdminEventFlowHandler(this, machineService, machineEventService);
+        adminEventFlowHandler = new AdminEventFlowHandler(this, machineService, machineEventProducer);
         prefixHandlers.put("EVENT_", adminEventFlowHandler);
 
         // ВОТ ЭТУ СТРОКУ ДОБАВИТЬ:
@@ -331,7 +335,7 @@ public class MachineBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton webAppBtn = new InlineKeyboardButton();
         webAppBtn.setText("Открыть mini App");
-        webAppBtn.setWebApp(new WebAppInfo("https://aside-dean-handheld-pixels.trycloudflare.com"));
+        webAppBtn.setWebApp(new WebAppInfo("https://flat-begins-lan-implement.trycloudflare.com"));
 
         markup.setKeyboard(List.of(
                 List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),
