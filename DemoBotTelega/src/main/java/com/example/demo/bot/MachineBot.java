@@ -347,7 +347,7 @@ public class MachineBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton webAppBtn = new InlineKeyboardButton();
         webAppBtn.setText("Открыть mini App");
-        webAppBtn.setWebApp(new WebAppInfo("https://lip-stereo-patent-prophet.trycloudflare.com"));
+        webAppBtn.setWebApp(new WebAppInfo("https://rare-locks-research-blanket.trycloudflare.com"));
 
         markup.setKeyboard(List.of(
                 List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),

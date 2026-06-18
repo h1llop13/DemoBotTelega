@@ -14,4 +14,6 @@ public interface MachineSubscriptionRepository extends JpaRepository<MachineSubs
     boolean existsBySubscriberIdAndMachineId(Long subscriberId, String machineId);
 
     void deleteBySubscriberIdAndMachineId(Long subscriberId, String machineId);
+
+    void deleteByMachineId(String machineId);
 }
