@@ -206,6 +206,18 @@ public class MachineBot extends TelegramLongPollingBot {
             return;
         }
 
+        if (text.equals("/help")) {
+            send(chatId,
+                    "/start - Перезапуск\n" +
+                            "/subscribe <...> - Подписаться\n" +
+                            "/unsubscribe <...> - Отписаться\n" +
+                            "/list - Список подписок\n" +
+                            "/myid - Узнать ID этого чата\n" +
+                            "/setemail <...> - Добавить email\n" +
+                            "/lang - Установить язык интерфейса\n"
+            );
+        }
+
         if (text.equals("/list")) {
             var sub = subscriberService.getByChatId(chatId);
             var list = subscriptionService.listMachines(sub.getId());
@@ -335,7 +347,7 @@ public class MachineBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton webAppBtn = new InlineKeyboardButton();
         webAppBtn.setText("Открыть mini App");
-        webAppBtn.setWebApp(new WebAppInfo("https://flat-begins-lan-implement.trycloudflare.com"));
+        webAppBtn.setWebApp(new WebAppInfo("https://lip-stereo-patent-prophet.trycloudflare.com"));
 
         markup.setKeyboard(List.of(
                 List.of(btn(localeService.msg(chatId, "bot.menu.subscribe"), "MENU_SUBSCRIBE")),

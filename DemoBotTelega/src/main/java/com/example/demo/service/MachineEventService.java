@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +22,7 @@ public class MachineEventService {
     private final SubscriberRepository subscriberRepository;
     private final MachineBot machineBot;
     private final EmailNotificationService emailNotificationService;
+    private static final Logger log = LoggerFactory.getLogger(MachineEventService.class);
 
     public MachineEventService(
             MachineSubscriptionRepository subscriptionRepository,
@@ -40,8 +43,17 @@ public class MachineEventService {
 
         for (var subscription : subscriptions) {
             subscriberRepository.findById(subscription.getSubscriberId()).ifPresent(s -> {
-                machineBot.sendWithKeyboard(s.getChatId(), text, keyboard);
-                emailNotificationService.sendNotification(s, event);
+                try {
+                    machineBot.sendWithKeyboard(s.getChatId(), text, keyboard);
+                } catch (Exception e) {
+                    log.error("Не удалось отправить Telegram-уведомление подписчику {}: {}", s.getChatId(), e.getMessage());
+                }
+
+                try {
+                    emailNotificationService.sendNotification(s, event);
+                } catch (Exception e) {
+                    log.error("Не удалось отправить email-уведомление подписчику {}: {}", s.getChatId(), e.getMessage());
+                }
             });
         }
     }

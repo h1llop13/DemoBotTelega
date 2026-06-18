@@ -7,6 +7,12 @@ public class MenuHelpHandler implements CallbackHandler {
     public MenuHelpHandler(MachineBot bot) { this.bot = bot; }
     @Override
     public void handle(Long chatId, String data) {
-        bot.send(chatId, "/start\n/help\n/subscribe\n/unsubscribe\n/list");
+        bot.send(chatId, "/start - Перезапуск\n" +
+                "/subscribe <...> - Подписаться\n" +
+                "/unsubscribe <...> - Отписаться\n" +
+                "/list - Список подписок\n" +
+                "/myid - Узнать ID этого чата\n" +
+                "/setemail <...> - Добавить email\n" +
+                "/lang - Установить язык интерфейса\n");
     }
 }
